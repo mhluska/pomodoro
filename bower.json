@@ -1,0 +1,26 @@
+{
+  "name": "pomodoro",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mhluska/pomodoro",
+  "authors": [
+    "Maros Hluska <mhluska@gmail.com>"
+  ],
+  "description": "Simple Pomodoro timer",
+  "main": "index.html",
+  "keywords": [
+    "simple",
+    "Pomodoro",
+    "timer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.3"
+  }
+}

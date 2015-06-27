@@ -1,0 +1,9 @@
+#!/bin/bash
+
+root="$(git rev-parse --show-toplevel)"
+
+cd "${root}"
+
+coffee -cw . &
+sass --watch . &
+wait
