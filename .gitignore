@@ -1,6 +1,10 @@
 *.css
 *.css.map
 *.js
+*.js.min
+
+/dist
 
 .sass-cache
 .todo
+.env
