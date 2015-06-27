@@ -3,3 +3,4 @@
 *.js
 
 .sass-cache
+.todo
