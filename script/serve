@@ -4,4 +4,4 @@ root="$(git rev-parse --show-toplevel)"
 
 cd "${root}"
 
-pythom -m SimpleHTTPServer
+python -m SimpleHTTPServer
