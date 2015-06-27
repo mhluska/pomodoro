@@ -12,29 +12,29 @@
         <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
         <link rel="stylesheet" href="pomodoro.css">
     </head>
-    <body>
-        <div>
-            <h1>Pomodoro Timer</h1>
-            <ul>
+    <body class="pomodoro">
+        <div class="nav">
+            <h1 class="title">Pomodoro Timer</h1>
+            <ul class="buttons">
                 <li>FAQ</li>
                 <li>Settings</li>
-                <li class="share twitter"></li>
-                <li class="share facebook"></li>
+                <li class="share twitter"><a href="#">Tweet</a></li>
+                <li class="share facebook"><a href="#">Share</a></li>
             </ul>
         </div>
 
         <ul class="buttons length">
-            <li><button>Pomodoro</button></li> 
-            <li><button>Short Break</button></li> 
-            <li><button>Long Break</button></li> 
+            <li class="pomodoro"><button>Pomodoro</button></li> 
+            <li class="short-break"><button>Short Break</button></li> 
+            <li class="long-break"><button>Long Break</button></li> 
         </ul>
 
         <div class="timer"></div>
 
         <ul class="buttons control">
-            <li><button>Start</button></li> 
-            <li><button>Stop</button></li> 
-            <li><button>Reset</button></li> 
+            <li class="start"><button>Start</button></li> 
+            <li class="stop"><button>Stop</button></li> 
+            <li class="reset"><button>Reset</button></li> 
         </ul>
 
         <script src="pomodoro.js"></script>

@@ -1,0 +1,27 @@
+body {
+  font-size: 16px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+}
+
+body.pomodoro {
+
+  padding: 0.5em;
+
+  .title {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+
+  .title,
+  .buttons {
+    text-align: center;
+  }
+}
