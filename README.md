@@ -1,7 +1,10 @@
-# Pomodoro
-Simple Pomodoro timer
+![logo](logo.png)
 
-## Development
+### Pomodoro Timer
+
+**Pomodoro Timer** is an easy to use, web-based Pomodoro Technique timer: http://timer.red/
+
+Development:
 
 ```
 gem install sass
