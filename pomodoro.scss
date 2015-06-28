@@ -37,22 +37,21 @@ a {
 }
 
 body.pomodoro {
+  $nav-height: 122px;
 
-  $nav-height: 220px;
-
-  margin-top: -$nav-height;
   text-align: center;
+  margin-top: -$nav-height;
 
   .nav {
-    background: url(logo-small.png) top center no-repeat;
     box-sizing: border-box;
     height: $nav-height;
-    padding-top: 130px;
   }
 
   .title {
-    margin-top: 0;
+    background: url(logo-small.png) 83% 50% no-repeat;
+    padding-top: 5px;
     font-size: 1.2em;
+    margin-left: -20px;
 
     span {
       color: $link-hover-color;
@@ -60,7 +59,6 @@ body.pomodoro {
   }
 
   .share-links {
-    margin-bottom: 3em;
     font-size: 0.9em;
   }
 
