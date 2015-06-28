@@ -6,4 +6,5 @@ Simple Pomodoro timer
 ```
 gem install sass
 npm install -g coffee-script uglify-js
+script/serve
 ```

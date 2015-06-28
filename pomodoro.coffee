@@ -73,6 +73,7 @@ class Pomodoro
   ###
   resetTimer: (@timeSetting) ->
     @stopTimer()
+    @pastElapsedTime = 0
     @startTimer()
 
   ###

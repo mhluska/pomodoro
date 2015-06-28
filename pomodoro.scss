@@ -1,6 +1,6 @@
 $font-color: #333;
 $link-underline-color: #ccc;
-$link-hover-color: #00bc59;
+$link-hover-color: #b54646;
 
 body {
   font-size: 16px;
@@ -38,15 +38,23 @@ a {
 
 body.pomodoro {
 
+  $nav-height: 120px;
+
+  margin-top: -$nav-height;
   padding: 0.5em;
   text-align: center;
+
+  .nav {
+    box-sizing: border-box;
+    height: $nav-height;
+  }
 
   .title {
     margin-top: 0;
     font-size: 1.2em;
 
     span {
-      color: #b54646;
+      color: $link-hover-color;
     }
   }
 
