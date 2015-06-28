@@ -4,7 +4,7 @@ $link-hover-color: #b54646;
 
 body {
   font-size: 16px;
-  font-family: 'Merriweather', sans-serif;
+  font-family: 'Merriweather', serif;
   color: $font-color;
 }
 
@@ -15,19 +15,6 @@ ul {
 
 li {
   display: inline-block;
-}
-
-@media only screen and (min-device-width: 480px){
-  html {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-
-  body.pomodoro {
-    padding-top: 0;
-  }
 }
 
 a:hover {
@@ -43,32 +30,37 @@ a {
 }
 
 body.pomodoro {
-  width: 20em;
   text-align: center;
   margin: 0 auto;
-  padding-top: 4em;
+  padding: 3em 0;
+  width: 100%;
 
   .github-ribbon {
     position: absolute; 
     top: 0; 
     right: 0; 
     border: 0;
+    display: none;
   }
 
   .nav {
     margin-bottom: 3em;
+    padding-top: 1.5em;
     overflow: auto;
   }
 
   .description {
     margin-top: 3em;
+    margin-bottom: 0;
+    padding: 0 2em;
   }
 
   .title {
     font-size: 1.2em;
-    margin-left: -20px;
     width: 320px;
+    margin: 0 auto;
     position: relative;
+    left: -10px;
 
     span {
       color: $link-hover-color;
@@ -105,5 +97,43 @@ body.pomodoro {
     font-weight: 500;
     margin: 0.2em 0;
     min-height: 1.18em;
+    line-height: normal;
+  }
+
+  .timer-wrapper {
+    padding: 2em;
+    padding: 2em 0;
+    background-color: #fefefe;
+    margin: 0px -20px;
+    border: 1px solid #ddd;
+    line-height: 0;
+  }
+}
+
+@media only screen and (min-device-width: 480px){
+  html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    body.pomodoro {
+      padding: 0;
+      width: 24em;
+
+      .github-ribbon {
+        display: block;
+      }
+
+      .timer-wrapper {
+        padding: 2em;
+        border-radius: 4px;
+        margin: 0;
+      }
+
+      .description {
+        padding: 0;
+      }
+    }
   }
 }
