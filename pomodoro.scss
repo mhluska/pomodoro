@@ -46,7 +46,14 @@ body.pomodoro {
   width: 20em;
   text-align: center;
   margin: 0 auto;
-  padding-top: 1em;
+  padding-top: 4em;
+
+  .github-ribbon {
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    border: 0;
+  }
 
   .nav {
     margin-bottom: 3em;

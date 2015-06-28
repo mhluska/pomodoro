@@ -8,7 +8,7 @@ cd "${root}"
 
 mkdir -p dist
 coffee -cp pomodoro.coffee > dist/pomodoro.js
-cp web-fonts.js robots.txt apple-touch-icon.png notify.mp3 tomato.png favicon.ico bower_components/normalize.css/normalize.css pomodoro.css index.html dist
+cp web-fonts.js robots.txt apple-touch-icon.png notify.mp3 tomato.png ribbon.png favicon.ico bower_components/normalize.css/normalize.css pomodoro.css index.html dist
 cp bower_components/gh-buttons/index.css dist/gh-buttons.css
 sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" sitemap.xml > dist/sitemap.xml
 
