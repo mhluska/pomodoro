@@ -1,4 +1,4 @@
-![logo](logo.png)
+![tomato](tomato.png)
 
 ### Pomodoro Timer
 
