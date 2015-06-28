@@ -1,7 +1,8 @@
 class Pomodoro
-  LENGTH_POMODORO: 25 * 60
-  LENGTH_SHORT: 5 * 60
-  LENGTH_LONG: 10 * 60
+  setting: 
+    POMODORO: 25 * 60 * 1000
+    SHORT:    5  * 60 * 1000
+    LONG:     10 * 60 * 1000
 
   constructor: (@container) ->
     @elemPomodoro   = @find('.button-group.length .pomodoro')
@@ -12,22 +13,24 @@ class Pomodoro
     @elemResetTimer = @find('.button-group.control .reset')
     @elemTimer      = @find('.timer')
 
-    @countdownIntervalID = null
-    @timeSetting = @LENGTH_POMODORO
-    @currentTime = @setTime(@LENGTH_POMODORO)
+    @startTime        = null
+    @updateIntervalID = null
+    @pastElapsedTime  = 0
+    @timeSetting      = @setting.POMODORO
 
+    @showTime()
     @bindActions()
 
   ###
   @private
   ###
   bindActions: ->
-    @elemPomodoro.addEventListener('click',   => @resetTimer(@LENGTH_POMODORO))
-    @elemShortBreak.addEventListener('click', => @resetTimer(@LENGTH_SHORT))
-    @elemLongBreak.addEventListener('click',  => @resetTimer(@LENGTH_LONG))
+    @elemPomodoro.addEventListener('click',   => @resetTimer(@setting.POMODORO))
+    @elemShortBreak.addEventListener('click', => @resetTimer(@setting.SHORT))
+    @elemLongBreak.addEventListener('click',  => @resetTimer(@setting.LONG))
     @elemStartTimer.addEventListener('click', => @startTimer())
     @elemStopTimer.addEventListener('click',  => @stopTimer())
-    @elemResetTimer.addEventListener('click', => @resetTimer())
+    @elemResetTimer.addEventListener('click', => @resetTimer(@timeSetting))
 
   ###
   @private
@@ -41,58 +44,59 @@ class Pomodoro
   @private
   ###
   running: ->
-    @countdownIntervalID?
+    @updateIntervalID?
 
   ###
   @private
   ###
   startTimer: ->
     return if @running()
-    @countdownTimer(@currentTime)
+
+    @showTime()
+    @startTime = Date.now()
+    @updateIntervalID = setInterval(=>
+      @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
+    , 1000)
 
   ###
   @private
   ###
   stopTimer: ->
     return unless @running()
-    clearInterval(@countdownIntervalID)
-    @countdownIntervalID = null
+    clearInterval(@updateIntervalID)
+    @updateIntervalID = null
+    @pastElapsedTime += Date.now() - @startTime
+    @startTime        = null
 
   ###
   @private
   ###
-  resetTimer: (seconds) ->
-    @timeSetting = seconds if seconds
+  resetTimer: (@timeSetting) ->
     @stopTimer()
-    @countdownTimer(@timeSetting)
+    @startTimer()
 
   ###
   @private
+  @param [number] time The time in milliseconds to format
   ###
-  countdownTimer: (seconds) ->
-    @currentTime = @setTime(seconds)
-
-    return if seconds <= 0
-
-    @countdownIntervalID = setTimeout(=>
-      @countdownTimer(seconds - 1)
-    , 1000)
-
-  ###
-  @private
-  ###
-  formatTime: (totalSeconds) ->
+  formatTime: (time) ->
+    totalSeconds = time / 1000
     minutes = Math.floor(totalSeconds / 60).toString()
-    seconds = (totalSeconds % 60).toString()
+    seconds = Math.ceil(totalSeconds % 60).toString()
     seconds = '0' + seconds if seconds.length is 1
-
     minutes + ':' + seconds
 
   ###
   @private
   ###
-  setTime: (seconds) ->
-    @elemTimer.innerHTML = @formatTime(seconds)
-    seconds
+  subtractTime: (timeElapsed) ->
+    remaining = Math.max(0, @timeSetting - timeElapsed)
+    @elemTimer.innerHTML = @formatTime(remaining)
+
+  ###
+  @private
+  ###
+  showTime: ->
+    @subtractTime(@pastElapsedTime)
 
 new Pomodoro(document.querySelector('body.pomodoro'))
