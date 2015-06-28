@@ -7,10 +7,13 @@ root="$(git rev-parse --show-toplevel)"
 cd "${root}"
 
 mkdir -p dist
-coffee -cp pomodoro.coffee | uglifyjs -cm > dist/pomodoro.js
-cp robots.txt apple-touch-icon.png notify.mp3 tomato*.png favicon.ico bower_components/normalize.css/normalize.css pomodoro.css index.html dist
+coffee -cp pomodoro.coffee > dist/pomodoro.js
+cp web-fonts.js robots.txt apple-touch-icon.png notify.mp3 tomato.png favicon.ico bower_components/normalize.css/normalize.css pomodoro.css index.html dist
 cp bower_components/gh-buttons/index.css dist/gh-buttons.css
 sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" sitemap.xml > dist/sitemap.xml
+
+html-inline dist/index.html | html-minifier -c config/html-minifier.json > dist/index.html.min
+mv dist/index.html.min dist/index.html
 
 ssh -p ${DEPLOY_PORT} ${DEPLOY_USERNAME}@${DEPLOY_HOST} mkdir -p ${DEPLOY_PATH}
 scp -P ${DEPLOY_PORT} dist/* ${DEPLOY_USERNAME}@${DEPLOY_HOST}:${DEPLOY_PATH}

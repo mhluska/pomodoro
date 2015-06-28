@@ -8,6 +8,6 @@ Development:
 
 ```
 gem install sass
-npm install -g coffee-script uglify-js
+npm install -g coffee-script html-inline html-minifier
 script/serve
 ```

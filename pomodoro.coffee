@@ -70,7 +70,7 @@ class Pomodoro
       if remaining is 0
         @notifySound.play() 
         @stopTimer()
-        
+
     , (1000 / 30))
 
   ###

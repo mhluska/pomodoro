@@ -59,10 +59,12 @@ body.pomodoro {
       color: $link-hover-color;
     }
 
+    // Tomato icon
     &::after {
       display: block;
       content: '';
-      background: url(tomato-small.png) 50% 50% no-repeat;
+      background: 50% 50% no-repeat;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAFBUlEQVRIx9VWS2xVVRRd+5x736+vLaWlraVQDEZEaSohgoABRRsRSYyaaGIUoxM1gYHCkIiJxIGJYWR0pFEjE38DlIFikBAIBilgoQT7k/Ip9L1+X9+7v3P2dvBavq8UNAzcg5uXe++766y99lnrkIjgTpbCHa5pACL2iz8KZnQ4uBhxAEBwG6SdmzzrHm/7O39sbnpRSleOBdnO7JE56YWL61oHw7PlTnVclf0ngEt+z67zOxT0ge5v0lxz/4xHKhO1h/p21SbnnQ73V8caWypaAZoWgEqKPGayh7I/JHW6KdX829Gdvx77cmZlw2OLN3T1H4VIYrar2Hmz+WPDwajXN1q4OBQMx9K6XNc2ljW7KjE9A03u4qonZ8XnALR6wUsHO75HjLoG2gb6+4b9gYbonsCG/sLcLx1b8+FgZ+8Fx6lZ1vLEoFw6x92L565Nx2dMw+Dq8o339aHt7Zl9yQB9F3p1siyZqqizqZUrHj2d+Xk0wwtqnl/V/EJlWQ2LNRyl4zO0cm9J5GIlvPy6sVTs1PkhJ5G0+mh47q+c98n4svkXDqfvbZjb+uFdVfOdqcWYmkHmDA7sRNtunDsBQSau99RXZONugMiPvHdy96V0XAhUMwdrX8cDy28LQHByL77YjItdIAIRAIh0Vqb21pU7Fs90DFePB9AO3ATcGNyEtKzBi1uocf4tAIwNYP9X6DmCP3+DCSEGV22rw1Xp+mw0ZyS4vBIRsjbGHqSqxnnlbbXmWaqqvnp8rwWwEXbvQNfvKIyj9zisAQRiixgSaRqLwUbQBoCIYnatjYsoQMAMP6+WrNZvbFMLW0CqlFVkz+B8BwCMDoAtCCCC0hBizzUjycCPGYmzdayNR6bMmKQITVBUCqly+8f+4NOPJAimmKJsHy51Q7sYGUTIEIABAYyCR1pCHRMIgpwDiZMGKYEG1GRLBDY203T2JNhOATDQg5F+eAZDeZgigEyujwGBQjSujadIjFaOKECBNKBAjrCKG0lxNsOZjG5K3wCQG0T3EQwPIlII7RVprxbMIvI0hASWWRRcMMQUm60iGWHHgmL21AnddPcNGvg5DPbDminNmGA8zeHEXxjMHF0ZbRaOPFvok7DftreVygMTISyACLb098WS8ZXwlTvXYohAIMxhzvS3lwQIEXggutz365cfKBOo60yBwSwRAJmYB4iB+/DjpUQ2IcICQCVbJIaMp8AlIoCFAUMAJtnFVj5VCsBa+CE8gSmBYEMyvprK01hY2DCLWLjNi2jmrFItKp+F9DyM+LCMa1kIk/GcmySxNXZ8KMhlbDQKd+U6cpxSAHVNaFkFRZdnEiQAYBHl4Y2ytcyWi9ZCkwUg9E1+2PfzppDh8bzrrHgaTmyKjbbgIdQ3YeAcyIUFLMEQDEUjdixT0K4iRUpR8QoFRcQCPx+JFSIQo/Ktze6DSycMuBTAEjS34rvPQYBoMIGLNCkKrTU8YQgABKSIiKAVEUDgnF++fm31xk0qkZj6XJQsx2vvYsNWcByBhQAEEJQmragYDROtUQRARCACiHiF5PKls95732louIXAiUK0HcT2TTjbC8eF1mHI/Rc8tje8KUIQ0pRa/1zVtg+cSXu4tcgcyuDbz7DvJ5xsiywGLoWBb4sRg6L8Aqooc2c3pl9+tWLjFnLd28zky/s/2897fhw/3m4ra5y6el1Xr2vrdG29rq2jZPJfHrz+T6frfwCjA6xFMXIBqgAAAABJRU5ErkJggg==);
       width: 32px;
       height: 32px;
       position: absolute;
@@ -84,8 +86,9 @@ body.pomodoro {
 
   .timer {
     font-size: 5em;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-weight: 500;
     margin: 0.2em 0;
+    min-height: 1.18em;
   }
 }
