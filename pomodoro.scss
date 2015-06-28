@@ -38,15 +38,16 @@ a {
 
 body.pomodoro {
 
-  $nav-height: 120px;
+  $nav-height: 220px;
 
   margin-top: -$nav-height;
-  padding: 0.5em;
   text-align: center;
 
   .nav {
+    background: url(logo-small.png) top center no-repeat;
     box-sizing: border-box;
     height: $nav-height;
+    padding-top: 130px;
   }
 
   .title {

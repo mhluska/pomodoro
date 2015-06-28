@@ -8,7 +8,7 @@ cd "${root}"
 
 mkdir -p dist
 coffee -cp pomodoro.coffee | uglifyjs -cm > dist/pomodoro.js
-cp favicon.ico bower_components/normalize.css/normalize.css pomodoro.css index.html dist
+cp logo*.png favicon.ico bower_components/normalize.css/normalize.css pomodoro.css index.html dist
 cp bower_components/gh-buttons/index.css dist/gh-buttons.css
 
 ssh -p ${DEPLOY_PORT} ${DEPLOY_USERNAME}@${DEPLOY_HOST} mkdir -p ${DEPLOY_PATH}
