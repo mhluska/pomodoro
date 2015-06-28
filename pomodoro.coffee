@@ -13,6 +13,7 @@ class Pomodoro
     @elemResetTimer = @find('.button-group.control .reset')
     @elemTimer      = @find('.timer')
 
+    @notifySound      = @loadSound('notify.mp3')
     @startTime        = null
     @updateIntervalID = null
     @pastElapsedTime  = 0
@@ -20,6 +21,15 @@ class Pomodoro
 
     @showTime()
     @bindActions()
+
+  ###
+  @private
+  ###
+  loadSound: (path) ->
+    sound = new Audio(path)
+    sound.preload = 'auto'
+    sound.load()
+    sound
 
   ###
   @private
@@ -55,7 +65,11 @@ class Pomodoro
     @showTime()
     @startTime = Date.now()
     @updateIntervalID = setInterval(=>
-      @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
+      remaining = @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
+
+      if remaining is 0
+        @notifySound.play() 
+        @stopTimer()
     , 1000)
 
   ###
@@ -93,6 +107,7 @@ class Pomodoro
   subtractTime: (timeElapsed) ->
     remaining = Math.max(0, @timeSetting - timeElapsed)
     @elemTimer.innerHTML = @formatTime(remaining)
+    remaining
 
   ###
   @private
