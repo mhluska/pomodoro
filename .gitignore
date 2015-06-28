@@ -4,6 +4,7 @@
 *.js.min
 
 /dist
+/bower_components
 
 .sass-cache
 .todo

@@ -1,5 +1,11 @@
+$font-color: #333;
+$link-underline-color: #ccc;
+$link-hover-color: #00bc59;
+
 body {
   font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  color: $font-color;
 }
 
 ul {
@@ -11,18 +17,48 @@ li {
   display: inline-block;
 }
 
+html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+a:hover {
+  color: $link-hover-color;
+  border-bottom-color: $link-hover-color;
+}
+
+a {
+  transition: color 0.15s linear;
+  color: $font-color;
+  border-bottom: 1px solid $link-underline-color;
+  text-decoration: none;
+}
+
 body.pomodoro {
 
   padding: 0.5em;
+  text-align: center;
 
   .title {
     margin-top: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
-  .title,
-  .timer,
-  .buttons {
-    text-align: center;
+  .share-links {
+    margin-bottom: 3em;
+    font-size: 0.9em;
+  }
+
+  .share {
+    margin: 0 0.2em;
+  }
+
+  .timer {
+    font-size: 5em;
+    font-family: 'Roboto';
+    font-weight: 500;
+    margin: 0.4em 0;
   }
 }

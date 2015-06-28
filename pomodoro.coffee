@@ -4,12 +4,12 @@ class Pomodoro
   LENGTH_LONG: 10 * 60
 
   constructor: (@container) ->
-    @elemPomodoro   = @find('.buttons.length .pomodoro')
-    @elemShortBreak = @find('.buttons.length .short-break')
-    @elemLongBreak  = @find('.buttons.length .long-break')
-    @elemStartTimer = @find('.buttons.control .start')
-    @elemStopTimer  = @find('.buttons.control .stop')
-    @elemResetTimer = @find('.buttons.control .reset')
+    @elemPomodoro   = @find('.button-group.length .pomodoro')
+    @elemShortBreak = @find('.button-group.length .short-break')
+    @elemLongBreak  = @find('.button-group.length .long-break')
+    @elemStartTimer = @find('.button-group.control .start')
+    @elemStopTimer  = @find('.button-group.control .stop')
+    @elemResetTimer = @find('.button-group.control .reset')
     @elemTimer      = @find('.timer')
 
     @countdownIntervalID = null

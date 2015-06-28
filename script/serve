@@ -5,4 +5,5 @@ root="$(git rev-parse --show-toplevel)"
 cd "${root}"
 
 ln -fs bower_components/normalize.css/normalize.css
+ln -fs bower_components/gh-buttons/index.css gh-buttons.css
 python -m SimpleHTTPServer

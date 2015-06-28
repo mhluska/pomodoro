@@ -9,33 +9,37 @@
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="gh-buttons.css">
         <link rel="stylesheet" href="pomodoro.css">
     </head>
     <body class="pomodoro">
         <div class="nav">
             <h1 class="title">Pomodoro Timer</h1>
-            <ul class="buttons">
-                <li>FAQ</li>
-                <li>Settings</li>
-                <li class="share twitter"><a href="#">Tweet</a></li>
-                <li class="share facebook"><a href="#">Share</a></li>
+            <ul class="share-links">
+                <!-- TODO(maros): Implement this -->
+                <!--<li>FAQ</li>-->
+                <!--<li>Settings</li>-->
+                <li class="share twitter"><a href="#" target="_blank">Tweet</a></li>
+                <li class="share facebook"><a href="#" target="_blank">Share</a></li>
+                <li class="share github"><a href="https://github.com/mhluska/pomodoro" target="_blank">GitHub</a></li>
             </ul>
         </div>
 
-        <ul class="buttons length">
-            <li class="pomodoro"><button>Pomodoro</button></li> 
-            <li class="short-break"><button>Short Break</button></li> 
-            <li class="long-break"><button>Long Break</button></li> 
-        </ul>
+        <div class="button-group length">
+            <button class="pomodoro button big primary">Pomodoro</button>
+            <button class="short-break button big">Short Break</button>
+            <button class="long-break button big">Long Break</button>
+        </div>
 
         <div class="timer"></div>
 
-        <ul class="buttons control">
-            <li class="start"><button>Start</button></li> 
-            <li class="stop"><button>Stop</button></li> 
-            <li class="reset"><button>Reset</button></li> 
-        </ul>
+        <div class="button-group control">
+            <button class="start button big">Start</button>
+            <button class="stop button big">Stop</button>
+            <button class="reset button big">Reset</button>
+        </div>
 
         <script src="pomodoro.js"></script>
 
