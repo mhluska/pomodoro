@@ -97,7 +97,7 @@ class Pomodoro
   formatTime: (time) ->
     totalSeconds = time / 1000
     minutes = Math.floor(totalSeconds / 60).toString()
-    seconds = Math.ceil(totalSeconds % 60).toString()
+    seconds = Math.floor(totalSeconds % 60).toString()
     seconds = '0' + seconds if seconds.length is 1
     minutes + ':' + seconds
 
