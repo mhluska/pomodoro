@@ -4,7 +4,7 @@
 
 **Pomodoro Timer** is an easy to use, web-based Pomodoro Technique timer: http://timer.red/
 
-Develop:
+#### Develop
 
 ```
 gem install sass
@@ -13,7 +13,7 @@ script/serve
 script/watch
 ```
 
-Deploy:
+#### Deploy
 
 ```
 script/deploy
