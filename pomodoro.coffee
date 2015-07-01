@@ -61,6 +61,7 @@ class Pomodoro
   ###
   startTimer: ->
     return if @running()
+    return @resetTimer() if @pastElapsedTime > @timeSetting
 
     @showTime()
     @startTime = Date.now()
@@ -86,9 +87,10 @@ class Pomodoro
   ###
   @private
   ###
-  resetTimer: (@timeSetting) ->
+  resetTimer: (timeSetting) ->
+    @timeSetting = timeSetting if timeSetting?
     @stopTimer()
-    @pastElapsedTime = 1
+    @pastElapsedTime = 0
     @startTimer()
 
   ###
