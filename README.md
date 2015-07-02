@@ -8,7 +8,7 @@
 
 ```
 gem install sass
-npm install -g coffee-script html-inline html-minifier
+npm install -g coffee-script html-inline html-minifier postcss-cli autoprefixer
 script/serve
 script/watch
 ```

@@ -11,6 +11,8 @@ coffee -cp source/pomodoro.coffee > dist/pomodoro.js
 
 cp -LR source/* dist
 
+postcss --use autoprefixer source/*.css -d dist/
+
 rm dist/*.{coffee,scss}
 
 sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" dist/sitemap.xml > dist/sitemap.xml.tmp
