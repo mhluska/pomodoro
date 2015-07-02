@@ -59,20 +59,24 @@ class Pomodoro
   ###
   @private
   ###
-  startTimer: ->
+  startTimer: (delay) ->
     return if @running()
     return @resetTimer() if @pastElapsedTime > @timeSetting
 
+    timeDelay = if delay then 1000 else 0
     @showTime()
-    @startTime = Date.now()
-    @updateIntervalID = setInterval(=>
-      remaining = @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
 
-      if remaining is 0
-        @notifySound.play() 
-        @stopTimer()
+    setTimeout =>
+      @startTime = Date.now()
+      @updateIntervalID = setInterval(=>
+        remaining = @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
 
-    , (1000 / 30))
+        if remaining is 0
+          @notifySound.play() 
+          @stopTimer()
+
+      , (1000 / 30))
+    , timeDelay
 
   ###
   @private
@@ -91,7 +95,7 @@ class Pomodoro
     @timeSetting = timeSetting if timeSetting?
     @stopTimer()
     @pastElapsedTime = 0
-    @startTimer()
+    @startTimer(true)
 
   ###
   @private
