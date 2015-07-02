@@ -7,12 +7,14 @@ root="$(git rev-parse --show-toplevel)"
 cd "${root}"
 
 mkdir -p dist
-coffee -cp pomodoro.coffee > dist/pomodoro.js
+coffee -cp source/pomodoro.coffee > dist/pomodoro.js
 
-cp web-fonts.js robots.txt apple-touch-icon.png notify.mp3 tomato.png ribbon.png favicon.ico bower_components/screenfull/dist/screenfull.js bower_components/normalize.css/normalize.css pomodoro.css index.html dist
-cp bower_components/gh-buttons/index.css dist/gh-buttons.css
+cp -LR source/* dist
 
-sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" sitemap.xml > dist/sitemap.xml
+rm dist/*.{coffee,scss}
+
+sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" dist/sitemap.xml > dist/sitemap.xml.tmp
+mv dist/sitemap.xml.tmp dist/sitemap.xml
 
 html-inline dist/index.html | html-minifier -c config/html-minifier.json > dist/index.html.min
 mv dist/index.html.min dist/index.html

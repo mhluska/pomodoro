@@ -2,7 +2,7 @@
 
 root="$(git rev-parse --show-toplevel)"
 
-cd "${root}"
+cd "${root}/source"
 
 coffee -cw . &
 sass --watch . &

@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "normalize.css": "~3.0.3",
-    "gh-buttons": "https://raw.githubusercontent.com/necolas/css3-github-buttons/02c8017783e19fd592ffcfb1a9b8cd1f66e384f8/gh-buttons.css",
-    "screenfull": "~2.0.0"
+    "screenfull": "~2.0.0",
+    "css3-github-buttons": "necolas/css3-github-buttons#02c8017783e19fd592ffcfb1a9b8cd1f66e384f8"
   }
 }
