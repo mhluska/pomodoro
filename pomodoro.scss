@@ -59,7 +59,7 @@ body.pomodoro {
     display: none;
   }
 
-  .nav {
+  header {
     margin-bottom: 3em;
     padding-top: 1.5em;
     overflow: auto;
@@ -117,7 +117,7 @@ body.pomodoro {
   }
 
   .timer-wrapper {
-    padding: 2em;
+    width: 100%;
     padding: 2em 0;
     background-color: #fefefe;
     border-top: $thin-border;
@@ -129,7 +129,7 @@ body.pomodoro {
     @include align-vertical;
     padding: 0;
 
-    .nav,
+    header,
     .description,
     .github-ribbon {
       display: none;
@@ -150,6 +150,7 @@ body.pomodoro {
       }
 
       .timer-wrapper {
+        width: auto;
         padding: 2em;
         border-radius: 4px;
         border-left: $thin-border;
