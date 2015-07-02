@@ -3,6 +3,17 @@ $link-underline-color: #ccc;
 $link-hover-color: #b54646;
 $thin-border: 1px solid #ddd;
 
+@mixin align-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
 body {
   font-size: 16px;
   font-family: 'Merriweather', serif;
@@ -115,6 +126,9 @@ body.pomodoro {
   }
 
   &.fullscreen {
+    @include align-vertical;
+    padding: 0;
+
     .nav,
     .description,
     .github-ribbon {
@@ -125,10 +139,7 @@ body.pomodoro {
 
 @media only screen and (min-device-width: 480px){
   html {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    @include align-vertical;
 
     body.pomodoro {
       padding: 0;
