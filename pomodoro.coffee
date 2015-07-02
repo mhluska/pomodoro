@@ -1,3 +1,5 @@
+# global screenfull
+
 class Pomodoro
   setting: 
     POMODORO: 25 * 60 * 1000
@@ -11,6 +13,7 @@ class Pomodoro
     @elemStartTimer = @find('.button-group.control .start')
     @elemStopTimer  = @find('.button-group.control .stop')
     @elemResetTimer = @find('.button-group.control .reset')
+    @elemFullscreen = @find('.button-group.control .fullscreen')
     @elemTimer      = @find('.timer')
 
     @notifySound      = @loadSound('notify.mp3')
@@ -19,8 +22,30 @@ class Pomodoro
     @pastElapsedTime  = 0
     @timeSetting      = @setting.POMODORO
 
+    @showFullscreenButton() if screenfull.enabled
     @showTime()
     @bindActions()
+
+  ###
+  @private
+  ###
+  showFullscreenButton: ->
+    @elemFullscreen.classList.remove('hidden')
+
+  ###
+  @private
+  ###
+  requestFullscreen: ->
+    screenfull.request()
+
+  ###
+  @private
+  ###
+  updateFullscreenClass: ->
+    if screenfull.isFullscreen
+      document.body.classList.add('fullscreen')
+    else
+      document.body.classList.remove('fullscreen')
 
   ###
   @private
@@ -41,6 +66,9 @@ class Pomodoro
     @elemStartTimer.addEventListener('click', => @startTimer())
     @elemStopTimer.addEventListener('click',  => @stopTimer())
     @elemResetTimer.addEventListener('click', => @resetTimer(@timeSetting))
+    @elemFullscreen.addEventListener('click', => @requestFullscreen())
+
+    document.addEventListener(screenfull.raw.fullscreenchange, @updateFullscreenClass)
 
   ###
   @private

@@ -29,6 +29,10 @@ a {
   text-decoration: none;
 }
 
+.hidden {
+  display: none;
+}
+
 body.pomodoro {
   text-align: center;
   margin: 0 auto;
@@ -107,6 +111,14 @@ body.pomodoro {
     margin: 0px -20px;
     border: 1px solid #ddd;
     line-height: 0;
+  }
+
+  &.fullscreen {
+    .nav,
+    .description,
+    .github-ribbon {
+      display: none;
+    }
   }
 }
 
