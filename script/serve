@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PORT="${1:-8000}"
 root="$(git rev-parse --show-toplevel)"
 
 cd "${root}/source"
@@ -8,4 +9,4 @@ ln -fs ../bower_components/normalize.css/normalize.css
 ln -fs ../bower_components/css3-github-buttons/gh-buttons.css
 ln -fs ../bower_components/css3-github-buttons/gh-icons.png
 ln -fs ../bower_components/screenfull/dist/screenfull.js
-python -m SimpleHTTPServer
+python -m SimpleHTTPServer ${PORT}
