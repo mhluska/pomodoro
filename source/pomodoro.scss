@@ -133,7 +133,8 @@ body.pomodoro {
       }
 
       .timer-wrapper {
-        width: 14.96em;
+        display: inline-block;
+        width: auto;
         padding: 1em;
         border-radius: 4px;
         border-left: $thin-border;
