@@ -35,8 +35,8 @@ class Pomodoro
   ###
   @private
   ###
-  requestFullscreen: ->
-    screenfull.request()
+  toggleFullscreen: ->
+    screenfull.toggle()
 
   ###
   @private
@@ -66,7 +66,7 @@ class Pomodoro
     @elemStartTimer.addEventListener('click', => @startTimer())
     @elemStopTimer.addEventListener('click',  => @stopTimer())
     @elemResetTimer.addEventListener('click', => @resetTimer(@timeSetting))
-    @elemFullscreen.addEventListener('click', => @requestFullscreen())
+    @elemFullscreen.addEventListener('click', => @toggleFullscreen())
 
     document.addEventListener(screenfull.raw.fullscreenchange, @updateFullscreenClass)
 
