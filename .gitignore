@@ -6,7 +6,6 @@
 !web-fonts.js
 
 /dist
-/config
 /bower_components
 
 .sass-cache
