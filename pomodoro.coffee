@@ -63,15 +63,15 @@ class Pomodoro
     return if @running()
     return @resetTimer() if @pastElapsedTime > @timeSetting
 
-    timeDelay = if delay then 1000 else 0
     @showTime()
+    timeDelay = if delay then 1000 else 0
 
     setTimeout =>
       @startTime = Date.now()
       @updateIntervalID = setInterval(=>
         remaining = @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
 
-        if remaining is 0
+        if remaining < 1000
           @notifySound.play() 
           @stopTimer()
 
