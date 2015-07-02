@@ -3,7 +3,7 @@
 *.js
 *.js.min
 
-!web-fonts.js
+!source/web-fonts.js
 
 /dist
 /bower_components
