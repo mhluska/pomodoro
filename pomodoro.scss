@@ -1,6 +1,7 @@
 $font-color: #222;
 $link-underline-color: #ccc;
 $link-hover-color: #b54646;
+$thin-border: 1px solid #ddd;
 
 body {
   font-size: 16px;
@@ -108,8 +109,8 @@ body.pomodoro {
     padding: 2em;
     padding: 2em 0;
     background-color: #fefefe;
-    margin: 0px -20px;
-    border: 1px solid #ddd;
+    border-top: $thin-border;
+    border-bottom: $thin-border;
     line-height: 0;
   }
 
@@ -140,6 +141,8 @@ body.pomodoro {
       .timer-wrapper {
         padding: 2em;
         border-radius: 4px;
+        border-left: $thin-border;
+        border-right: $thin-border;
         margin: 0;
       }
 
