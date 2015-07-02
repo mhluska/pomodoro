@@ -101,7 +101,7 @@ body.pomodoro {
 
   .timer-wrapper {
     width: 100%;
-    padding: 2em 0;
+    padding: 1em 0;
     background-color: #fefefe;
     border-top: $thin-border;
     border-bottom: $thin-border;
@@ -133,12 +133,12 @@ body.pomodoro {
       }
 
       .timer-wrapper {
-        width: auto;
-        padding: 2em;
+        width: 18.972em;
+        padding: 1em;
         border-radius: 4px;
         border-left: $thin-border;
         border-right: $thin-border;
-        margin: 0;
+        margin: 0 auto;
       }
 
       .description {
