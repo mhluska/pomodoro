@@ -1,5 +1,6 @@
 WebFontConfig = {
-  google: { families: [ 'Merriweather::latin', 'Roboto:500:latin' ] }
+  google: { families: [ 'Merriweather::latin', 'Roboto:500:latin' ] },
+  active: function(){ document.body.classList.remove('invisible'); }
 };
 (function() {
   var wf = document.createElement('script');

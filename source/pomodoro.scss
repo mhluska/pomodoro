@@ -2,6 +2,7 @@ $font-color: #222;
 $link-underline-color: #ccc;
 $link-hover-color: #b54646;
 $thin-border: 1px solid #ddd;
+$fast-transition: 0.15s ease-out;
 
 @mixin align-vertical {
   display: flex;
@@ -45,19 +46,27 @@ a {
   display: none;
 }
 
-body.pomodoro {
+.github-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  display: none;
+  transition: $fast-transition;
+  transition-property: opacity;
+
+  body.invisible & {
+    opacity: 0;
+  }
+}
+
+.pomodoro {
+  transition: $fast-transition; 
+  transition-property: opacity, transform;
   text-align: center;
   margin: 0 auto;
   padding: 3em 0;
   width: 100%;
-
-  .github-ribbon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: 0;
-    display: none;
-  }
 
   header {
     margin-bottom: 3em;
@@ -108,43 +117,53 @@ body.pomodoro {
     line-height: 0;
   }
 
-  &.fullscreen {
+  body.invisible & {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+}
+
+body.fullscreen {
+  .github-ribbon {
+    display: none;
+  }
+
+  .pomodoro {
     @include align-vertical;
     padding: 0;
 
     header,
-    .description,
-    .github-ribbon {
+    .description {
       display: none;
     }
   }
 }
 
 @media only screen and (min-device-width: 480px){
-  html {
+  body {
     @include align-vertical;
+  }
 
-    body.pomodoro {
+  .github-ribbon {
+    display: block;
+  }
+
+  .pomodoro {
+    padding: 0;
+    width: 24em;
+
+    .timer-wrapper {
+      display: inline-block;
+      width: auto;
+      padding: 1em;
+      border-radius: 4px;
+      border-left: $thin-border;
+      border-right: $thin-border;
+      margin: 0 auto;
+    }
+
+    .description {
       padding: 0;
-      width: 24em;
-
-      .github-ribbon {
-        display: block;
-      }
-
-      .timer-wrapper {
-        display: inline-block;
-        width: auto;
-        padding: 1em;
-        border-radius: 4px;
-        border-left: $thin-border;
-        border-right: $thin-border;
-        margin: 0 auto;
-      }
-
-      .description {
-        padding: 0;
-      }
     }
   }
 }

@@ -27,48 +27,50 @@
         <link rel="stylesheet" href="pomodoro.css">
     </head>
 
-    <body class="pomodoro">
+    <body class="invisible">
         <a class="github-ribbon" href="https://github.com/mhluska/pomodoro" target="_blank">
             <img src="ribbon.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
         </a>
 
-        <header>
-            <h1 class="title">Pomodoro<span>Timer</span></h1>
-            <nav>
-                <ul class="share-links">
-                    <li class="share twitter"><a href="https://twitter.com/intent/tweet?hashtags=pomodoro,productivity&amp;related=tomatotimer&amp;text=Pomodoro%20Timer:%20An%20easy%20to%20use%20Pomodoro%20Technique%20timer&amp;tw_p=tweetbutton&amp;url=http://timer.red&amp;via=mhluska" target="_blank">Tweet</a></li>
-                    <li class="share facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://timer.red" target="_blank">Share</a></li>
-                    <li class="share github"><a href="https://github.com/mhluska/pomodoro" target="_blank">GitHub</a></li>
-                </ul>
-            </nav>
-        </header>
+        <main class="pomodoro">
+            <header>
+                <h1 class="title">Pomodoro<span>Timer</span></h1>
+                <nav>
+                    <ul class="share-links">
+                        <li class="share twitter"><a href="https://twitter.com/intent/tweet?hashtags=pomodoro,productivity&amp;related=tomatotimer&amp;text=Pomodoro%20Timer:%20An%20easy%20to%20use%20Pomodoro%20Technique%20timer&amp;tw_p=tweetbutton&amp;url=http://timer.red&amp;via=mhluska" target="_blank">Tweet</a></li>
+                        <li class="share facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://timer.red" target="_blank">Share</a></li>
+                        <li class="share github"><a href="https://github.com/mhluska/pomodoro" target="_blank">GitHub</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-        <div class="timer-wrapper">
-            <div class="button-group length">
-                <button class="pomodoro button big primary">Pomodoro</button>
-                <button class="short-break big button">Short Break</button>
-                <button class="long-break big button">Long Break</button>
+            <div class="timer-wrapper">
+                <div class="button-group length">
+                    <button class="pomodoro-time button big primary">Pomodoro</button>
+                    <button class="short-break big button">Short Break</button>
+                    <button class="long-break big button">Long Break</button>
+                </div>
+
+                <div class="timer"></div>
+
+                <div class="button-group control">
+                    <button class="start big button">Start</button>
+                    <button class="stop big button">Stop</button>
+                    <button class="reset big button">Reset</button>
+                    <button class="fullscreen big button hidden">Fullscreen</button>
+                </div>
             </div>
 
-            <div class="timer"></div>
-
-            <div class="button-group control">
-                <button class="start big button">Start</button>
-                <button class="stop big button">Stop</button>
-                <button class="reset big button">Reset</button>
-                <button class="fullscreen big button hidden">Fullscreen</button>
-            </div>
-        </div>
-
-        <footer>
-            <p class="description">
-                The Pomodoro Technique is a time management method developed by
-                Francesco Cirillo in the late 1980s. The technique uses a timer to
-                break down work into intervals traditionally 25 minutes in length,
-                separated by short breaks. Read more about it at the
-                <a href="http://pomodorotechnique.com/" target="_blank">official website</a>.
-            </p>
-        </footer>
+            <footer>
+                <p class="description">
+                    The Pomodoro Technique is a time management method developed by
+                    Francesco Cirillo in the late 1980s. The technique uses a timer to
+                    break down work into intervals traditionally 25 minutes in length,
+                    separated by short breaks. Read more about it at the
+                    <a href="http://pomodorotechnique.com/" target="_blank">official website</a>.
+                </p>
+            </footer>
+        </main>
 
         <script src="screenfull.js"></script>
         <script src="web-fonts.js"></script>

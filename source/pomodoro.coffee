@@ -7,7 +7,7 @@ class Pomodoro
     LONG:     10 * 60 * 1000
 
   constructor: (@container) ->
-    @elemPomodoro   = @find('.button-group.length .pomodoro')
+    @elemPomodoro   = @find('.button-group.length .pomodoro-time')
     @elemShortBreak = @find('.button-group.length .short-break')
     @elemLongBreak  = @find('.button-group.length .long-break')
     @elemStartTimer = @find('.button-group.control .start')
@@ -150,4 +150,4 @@ class Pomodoro
   showTime: ->
     @subtractTime(@pastElapsedTime)
 
-new Pomodoro(document.querySelector('body.pomodoro'))
+new Pomodoro(document.querySelector('.pomodoro'))
