@@ -8,6 +8,7 @@ $fast-transition: 0.15s ease-out;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -40,6 +41,15 @@ a {
   color: $font-color;
   border-bottom: 1px solid $link-underline-color;
   text-decoration: none;
+
+  &.image-link {
+    border-bottom: none;
+  }
+}
+
+p:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .hidden {
@@ -65,13 +75,17 @@ a {
   transition-property: opacity, transform;
   text-align: center;
   margin: 0 auto;
-  padding: 3em 0;
+  padding: 2em 0;
   width: 100%;
 
   header {
     margin-bottom: 3em;
     padding-top: 1.5em;
     overflow: auto;
+  }
+
+  footer {
+    margin-top: 3em;
   }
 
   .description {
@@ -117,6 +131,16 @@ a {
     line-height: 0;
   }
 
+  .sponsors {
+    margin-top: 3em;
+    font-size: 0.8em;
+  }
+
+  .browserstack-logo {
+    width: 10em;
+    margin: 1em 0;
+  }
+
   body.invisible & {
     opacity: 0;
     transform: translateY(5%);
@@ -124,32 +148,29 @@ a {
 }
 
 body.fullscreen {
-  .github-ribbon {
+  height: 100%;
+
+  .github-ribbon,
+  .pomodoro > * {
     display: none;
+  }
+
+  .timer-wrapper {
+    display: inline-block;
   }
 
   .pomodoro {
     @include align-vertical;
     padding: 0;
-
-    header,
-    .description {
-      display: none;
-    }
   }
 }
 
-@media only screen and (min-device-width: 480px){
-  body {
-    @include align-vertical;
-  }
-
+@media only screen and (min-width: 480px){
   .github-ribbon {
     display: block;
   }
 
   .pomodoro {
-    padding: 0;
     width: 24em;
 
     .timer-wrapper {
