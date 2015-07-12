@@ -7,14 +7,16 @@ class Pomodoro
     LONG:     10 * 60 * 1000
 
   constructor: (@container) ->
-    @elemPomodoro   = @find('.button-group.length .pomodoro-time')
-    @elemShortBreak = @find('.button-group.length .short-break')
-    @elemLongBreak  = @find('.button-group.length .long-break')
-    @elemStartTimer = @find('.button-group.control .start')
-    @elemStopTimer  = @find('.button-group.control .stop')
-    @elemResetTimer = @find('.button-group.control .reset')
-    @elemFullscreen = @find('.button-group.control .fullscreen')
-    @elemTimer      = @find('.timer')
+    @elemPomodoro    = @find('.button-group.length .pomodoro-time')
+    @elemShortBreak  = @find('.button-group.length .short-break')
+    @elemLongBreak   = @find('.button-group.length .long-break')
+    @elemStartTimer  = @find('.button-group.control .start')
+    @elemStopTimer   = @find('.button-group.control .stop')
+    @elemResetTimer  = @find('.button-group.control .reset')
+    @elemFullscreen  = @find('.button-group.control .fullscreen')
+    @elemAboutButton = @find('.share.about')
+    @elemAbout       = @find('.about-area')
+    @elemTimer       = @find('.timer')
 
     @notifySound      = @loadSound('notify.mp3')
     @startTime        = null
@@ -22,9 +24,16 @@ class Pomodoro
     @pastElapsedTime  = 0
     @timeSetting      = @setting.POMODORO
 
+    @showAbout() if @hasAboutAnchor()
     @showFullscreenButton() if screenfull.enabled
     @showTime()
     @bindActions()
+
+  ###
+  @private
+  ###
+  hasAboutAnchor: ->
+    window.location.hash is '#about'
 
   ###
   @private
@@ -37,6 +46,12 @@ class Pomodoro
   ###
   toggleFullscreen: ->
     screenfull.toggle()
+
+  ###
+  @private
+  ###
+  showAbout: ->
+    document.body.classList.remove('about-invisible')
 
   ###
   @private
@@ -60,13 +75,14 @@ class Pomodoro
   @private
   ###
   bindActions: ->
-    @elemPomodoro.addEventListener('click',   => @resetTimer(@setting.POMODORO))
-    @elemShortBreak.addEventListener('click', => @resetTimer(@setting.SHORT))
-    @elemLongBreak.addEventListener('click',  => @resetTimer(@setting.LONG))
-    @elemStartTimer.addEventListener('click', => @startTimer())
-    @elemStopTimer.addEventListener('click',  => @stopTimer())
-    @elemResetTimer.addEventListener('click', => @resetTimer(@timeSetting))
-    @elemFullscreen.addEventListener('click', => @toggleFullscreen())
+    @elemPomodoro.addEventListener('click',    => @resetTimer(@setting.POMODORO))
+    @elemShortBreak.addEventListener('click',  => @resetTimer(@setting.SHORT))
+    @elemLongBreak.addEventListener('click',   => @resetTimer(@setting.LONG))
+    @elemStartTimer.addEventListener('click',  => @startTimer())
+    @elemStopTimer.addEventListener('click',   => @stopTimer())
+    @elemResetTimer.addEventListener('click',  => @resetTimer(@timeSetting))
+    @elemFullscreen.addEventListener('click',  => @toggleFullscreen())
+    @elemAboutButton.addEventListener('click', => @showAbout())
 
     document.addEventListener(screenfull.raw.fullscreenchange, @updateFullscreenClass)
 

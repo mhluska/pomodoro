@@ -12,6 +12,11 @@ $fast-transition: 0.15s ease-out;
   height: 100%;
 }
 
+@mixin invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
 html {
   height: 100%;
 }
@@ -56,6 +61,10 @@ p:first-of-type {
   display: none;
 }
 
+.invisible {
+  @include invisible;
+}
+
 .github-ribbon {
   position: absolute;
   top: 0;
@@ -84,12 +93,19 @@ p:first-of-type {
     overflow: auto;
   }
 
-  footer {
+  .about-area {
     margin-top: 3em;
-    padding: 0 2em;
+    padding: 0 1em;
+    transition: 0.25s ease-out;
+    transition-property: opacity, visibility;
+
+    body.about-invisible & {
+      @include invisible;
+    }
   }
 
   .description {
+    font-size: 0.9em;
     margin-top: 3em;
     margin-bottom: 0;
   }
@@ -163,6 +179,10 @@ body.fullscreen {
     @include align-vertical;
     padding: 0;
   }
+}
+
+body.about-invisible {
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 480px){
