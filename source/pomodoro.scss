@@ -80,7 +80,7 @@ p:first-of-type {
 }
 
 .pomodoro {
-  transition: $fast-transition; 
+  transition: $fast-transition;
   transition-property: opacity, transform;
   text-align: center;
   margin: 0 auto;
@@ -115,6 +115,12 @@ p:first-of-type {
     width: 320px;
     margin: 0 auto;
     position: relative;
+
+    a {
+      border-bottom: none;
+      transition: none;
+      color: inherit;
+    }
 
     span {
       color: $link-hover-color;
