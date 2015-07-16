@@ -18,6 +18,7 @@ class Pomodoro
     @elemAbout       = @find('.about-area')
     @elemTimer       = @find('.timer')
 
+    @defaultTitle     = document.title
     @notifySound      = @loadSound('notify.mp3')
     @startTime        = null
     @updateIntervalID = null
@@ -111,9 +112,11 @@ class Pomodoro
     # `timeDelay` we sometimes introduce below.
     return @resetTimer() if (@pastElapsedTime + 1000) > @timeSetting
 
-    @showTime()
-    timeDelay = if delay then 1000 else 0
+    document.title = @defaultTitle
 
+    @showTime()
+
+    timeDelay = if delay then 1000 else 0
     clearInterval(@delayIntervalID)
 
     @delayIntervalID = setTimeout =>
@@ -121,13 +124,23 @@ class Pomodoro
       @updateIntervalID = setInterval(=>
         remaining = @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
 
-        if remaining < 1000
-          @notifySound.currentTime = 0
-          @notifySound.play()
-          @stopTimer()
+        @alert() if remaining < 1000
 
       , (1000 / 30))
     , timeDelay
+
+  ###
+  @private
+  @method alert
+  ###
+  alert: ->
+    @notifySound.currentTime = 0
+    @notifySound.play()
+    @stopTimer()
+
+    message = (@timeSetting / 1000 / 60) + ' minutes elapsed!'
+    document.title = message
+    alert(message)
 
   ###
   @private
