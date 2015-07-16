@@ -1,7 +1,7 @@
 # global screenfull
 
 class Pomodoro
-  setting: 
+  setting:
     POMODORO: 25 * 60 * 1000
     SHORT:    5  * 60 * 1000
     LONG:     10 * 60 * 1000
@@ -21,6 +21,7 @@ class Pomodoro
     @notifySound      = @loadSound('notify.mp3')
     @startTime        = null
     @updateIntervalID = null
+    @delayIntervalID  = null
     @pastElapsedTime  = 0
     @timeSetting      = @setting.POMODORO
 
@@ -98,25 +99,31 @@ class Pomodoro
   @private
   ###
   running: ->
-    @updateIntervalID?
+    @delayIntervalID? or @updateIntervalID?
 
   ###
   @private
   ###
   startTimer: (delay) ->
     return if @running()
-    return @resetTimer() if @pastElapsedTime > @timeSetting
+
+    # NOTE(maros): We have to pad this with 1000ms because of the artificial
+    # `timeDelay` we sometimes introduce below.
+    return @resetTimer() if (@pastElapsedTime + 1000) > @timeSetting
 
     @showTime()
     timeDelay = if delay then 1000 else 0
 
-    setTimeout =>
+    clearInterval(@delayIntervalID)
+
+    @delayIntervalID = setTimeout =>
       @startTime = Date.now()
       @updateIntervalID = setInterval(=>
         remaining = @subtractTime(@pastElapsedTime + (Date.now() - @startTime))
 
         if remaining < 1000
-          @notifySound.play() 
+          @notifySound.currentTime = 0
+          @notifySound.play()
           @stopTimer()
 
       , (1000 / 30))
@@ -127,7 +134,9 @@ class Pomodoro
   ###
   stopTimer: ->
     return unless @running()
+    clearInterval(@delayIntervalID)
     clearInterval(@updateIntervalID)
+    @delayIntervalID  = null
     @updateIntervalID = null
     @pastElapsedTime += Date.now() - @startTime
     @startTime        = null
