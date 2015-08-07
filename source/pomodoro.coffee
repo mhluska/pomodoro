@@ -86,7 +86,7 @@ class Pomodoro
     @elemFullscreen.addEventListener('click',  => @toggleFullscreen())
     @elemAboutButton.addEventListener('click', => @showAbout())
 
-    document.addEventListener(screenfull.raw.fullscreenchange, @updateFullscreenClass)
+    document.addEventListener(screenfull.raw.fullscreenchange, @updateFullscreenClass) if screenfull.enabled
 
   ###
   @private
