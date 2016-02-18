@@ -10,7 +10,7 @@ Cross-browser testing is sponsored by [BrowserStack](https://www.browserstack.co
 
 ```
 gem install sass
-npm install -g coffee-script "mhluska/html-inline#maros/fix-svg" html-minifier postcss-cli autoprefixer
+npm install -g coffee-script "mhluska/html-inline#maros/fix-svg" html-minifier@0.8.0 postcss-cli autoprefixer
 script/serve
 script/watch
 ```
