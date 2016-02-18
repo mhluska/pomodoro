@@ -1,5 +1,13 @@
 #!/bin/bash
 
+function run_server() {
+    if [[ "$(python --version)" =~ 'Python 3' ]]; then
+        python -m http.server ${PORT}
+    else
+        python -m SimpleHTTPServer ${PORT}
+    fi
+}
+
 PORT="${1:-8000}"
 root="$(git rev-parse --show-toplevel)"
 
@@ -9,4 +17,5 @@ ln -fs ../bower_components/normalize.css/normalize.css
 ln -fs ../bower_components/css3-github-buttons/gh-buttons.css
 ln -fs ../bower_components/css3-github-buttons/gh-icons.png
 ln -fs ../bower_components/screenfull/dist/screenfull.js
-python -m SimpleHTTPServer ${PORT}
+
+run_server
