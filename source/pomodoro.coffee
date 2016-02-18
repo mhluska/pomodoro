@@ -33,30 +33,35 @@ class Pomodoro
 
   ###
   @private
+  @method hasAboutAnchor
   ###
   hasAboutAnchor: ->
     window.location.hash is '#about'
 
   ###
   @private
+  @method showFullscreenButton
   ###
   showFullscreenButton: ->
     @elemFullscreen.classList.remove('hidden')
 
   ###
   @private
+  @method toggleFullscreen
   ###
   toggleFullscreen: ->
     screenfull.toggle()
 
   ###
   @private
+  @method showAbout
   ###
   showAbout: ->
     document.body.classList.remove('about-invisible')
 
   ###
   @private
+  @method updateFullscreenClass
   ###
   updateFullscreenClass: ->
     if screenfull.isFullscreen
@@ -66,6 +71,7 @@ class Pomodoro
 
   ###
   @private
+  @method loadSound
   ###
   loadSound: (path) ->
     sound = new Audio(path)
@@ -75,6 +81,7 @@ class Pomodoro
 
   ###
   @private
+  @method bindActions
   ###
   bindActions: ->
     @elemPomodoro.addEventListener('click',    => @resetTimer(@setting.POMODORO))
@@ -90,6 +97,7 @@ class Pomodoro
 
   ###
   @private
+  @method find
   ###
   find: (selector) ->
     elem = @container.querySelector(selector)
@@ -98,12 +106,14 @@ class Pomodoro
 
   ###
   @private
+  @method running
   ###
   running: ->
     @delayIntervalID? or @updateIntervalID?
 
   ###
   @private
+  @method startTimer
   ###
   startTimer: (delay) ->
     return if @running()
@@ -144,6 +154,7 @@ class Pomodoro
 
   ###
   @private
+  @method stopTimer
   ###
   stopTimer: ->
     return unless @running()
@@ -156,6 +167,7 @@ class Pomodoro
 
   ###
   @private
+  @method resetTimer
   ###
   resetTimer: (timeSetting) ->
     @timeSetting = timeSetting if timeSetting?
@@ -165,6 +177,7 @@ class Pomodoro
 
   ###
   @private
+  @method formatTime
   @param [number] time The time in milliseconds to format
   ###
   formatTime: (time) ->
@@ -176,6 +189,7 @@ class Pomodoro
 
   ###
   @private
+  @method subtractTime
   ###
   subtractTime: (timeElapsed) ->
     remaining = Math.max(0, @timeSetting - timeElapsed)
@@ -184,6 +198,7 @@ class Pomodoro
 
   ###
   @private
+  @method showTime
   ###
   showTime: ->
     @subtractTime(@pastElapsedTime)
