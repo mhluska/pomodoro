@@ -93,6 +93,96 @@ p:first-of-type {
     overflow: auto;
   }
 
+  .entries {
+    border: 1px solid transparent;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 0.8em;
+
+    .entry {
+      box-sizing: border-box;
+      display: block;
+      overflow: visible;
+      height: 4em;
+      line-height: 4em;
+
+      > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      &:not(:first-child) {
+        border-top: $thin-border;
+      }
+
+      &.editing {
+        $spacing: 1em;
+
+        padding-top: $spacing;
+        padding-bottom: $spacing;
+
+        > * {
+          display: none;
+        }
+
+        .note-entry {
+          display: block;
+        }
+      }
+    }
+
+    .close {
+      margin-left: 2em;
+    }
+
+    .entry-time {
+      width: 20%;
+    }
+
+    .note,
+    .note-entry {
+      float: left;
+    }
+
+    .note {
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .info-area {
+      text-align: right;
+    }
+
+    .note,
+    .info-area {
+      width: 50%;
+    }
+
+    .note-entry {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    [type=text] {
+      width: 50%;
+      position: absolute;
+      left: 0;
+    }
+
+    [type=submit] {
+      position: absolute;
+      right: 0;
+    }
+
+    [type=text],
+    [type=submit] {
+      top: 0;
+      bottom: 0;
+    }
+  }
+
   .about-area {
     margin-top: 3em;
     padding: 0 1em;
