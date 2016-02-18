@@ -184,6 +184,7 @@ p:first-of-type {
   }
 
   .about-area {
+    display: none;
     margin-top: 3em;
     padding: 0 1em;
     transition: 0.25s ease-out;
@@ -275,10 +276,6 @@ body.fullscreen {
     @include align-vertical;
     padding: 0;
   }
-}
-
-body.about-invisible {
-  overflow: hidden;
 }
 
 @media only screen and (min-width: 480px){

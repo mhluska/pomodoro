@@ -167,7 +167,13 @@ class Pomodoro
   @method showAbout
   ###
   showAbout: ->
-    document.body.classList.remove('about-invisible')
+    window.requestAnimationFrame(=>
+      @elemAbout.style.display = 'block'
+
+      window.requestAnimationFrame(->
+        document.body.classList.remove('about-invisible')
+      )
+    )
 
   ###
   @private
