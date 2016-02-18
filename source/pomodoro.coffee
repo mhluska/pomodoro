@@ -79,7 +79,7 @@ class EntryView
       </div>
     """)
 
-    @elemEntries.appendChild(@elem)
+    @elemEntries.insertBefore(@elem, @elemEntries.childNodes[0])
 
     @elem
 
