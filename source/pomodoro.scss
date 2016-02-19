@@ -23,7 +23,7 @@ html {
 
 body {
   font-size: 16px;
-  font-family: 'Merriweather', serif;
+  font-family: sans-serif;
   color: $font-color;
 }
 
@@ -100,11 +100,13 @@ p:first-of-type {
     font-size: 0.8em;
 
     .entry {
+      $height: 3.5em;
+
       box-sizing: border-box;
       display: block;
       overflow: visible;
-      height: 4em;
-      line-height: 4em;
+      height: $height;
+      line-height: $height;
 
       > * {
         display: inline-block;
@@ -116,7 +118,7 @@ p:first-of-type {
       }
 
       &.editing {
-        $spacing: 1em;
+        $spacing: 0.75em;
 
         padding-top: $spacing;
         padding-bottom: $spacing;
@@ -151,6 +153,7 @@ p:first-of-type {
 
     .info-area {
       text-align: right;
+      float: right;
     }
 
     .note,
@@ -202,6 +205,7 @@ p:first-of-type {
   }
 
   .title {
+    font-family: 'Merriweather', serif;
     font-size: 1.2em;
     width: 320px;
     margin: 0 auto;
