@@ -75,7 +75,7 @@ class EntryView
       </form>
       <div class="info-area">
         <span class="time-remaining">#{@model.time}</span>
-        <button class="close small button">x</button>
+        <button class="close small button">✕</button>
       </div>
     """)
 
