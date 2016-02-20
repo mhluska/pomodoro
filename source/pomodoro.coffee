@@ -109,9 +109,11 @@ class Pomodoro
     @elemTimer        = @find('.timer')
     @elemTimerWrapper = @find('.timer-wrapper')
     @elemEntries      = @find('.entries')
+    @elemHeader       = @find('.pomodoro header')
 
     @defaultTitle     = document.title
     @notifySound      = @loadSound('notify.mp3')
+    @cachedHeight     = {}
     @startTime        = null
     @updateIntervalID = null
     @delayIntervalID  = null
@@ -123,9 +125,28 @@ class Pomodoro
     @showFullscreenButton() if screenfull.enabled
     @showTime()
     @bindActions()
+    @updateVerticalAlignment()
 
     window.addEventListener('resize', @adjustEntriesWidth.bind(this))
     @adjustEntriesWidth()
+
+  ###
+  @private
+  @method outerHeight
+  @todo Move this to a utils class.
+  ###
+  outerHeight: (element, options = {}) ->
+    options.padding ?= true
+    options.margin  ?= true
+
+    styles  = window.getComputedStyle(element)
+    margin  = 0
+    margin  = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom) if options.margin
+    padding = 0
+    padding = parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom) if options.padding
+    border  = parseFloat(styles.borderTop) + parseFloat(styles.borderBottom)
+
+    element.clientHeight + margin + padding + border
 
   ###
   @private
@@ -140,6 +161,15 @@ class Pomodoro
     wrapperWidth = @elemTimerWrapper.clientWidth + 'px'
 
     @elemEntries.style.width = if fullScreen then buttonWidth else wrapperWidth
+
+  ###
+  @private
+  @method updateVerticalAlignment
+  @todo This is a temporary hack. Find a way to align this with CSS.
+  ###
+  updateVerticalAlignment: ->
+    @cachedHeight.header ?= @outerHeight(@elemHeader, padding: false) + 2
+    @elemHeader.style['margin-top'] = -(@cachedHeight.header) + 'px'
 
   ###
   @private
@@ -164,26 +194,27 @@ class Pomodoro
 
   ###
   @private
+  @method updateFullscreenClass
+  ###
+  updateFullscreenClass: (options = {}) ->
+    if options.enable or screenfull.isFullscreen
+      document.body.classList.add('fullscreen')
+    else
+      document.body.classList.remove('fullscreen')
+
+  ###
+  @private
   @method showAbout
   ###
   showAbout: ->
     window.requestAnimationFrame(=>
-      @elemAbout.style.display = 'block'
+      @elemAbout.classList.remove('hidden')
 
-      window.requestAnimationFrame(->
-        document.body.classList.remove('about-invisible')
+      window.requestAnimationFrame(=>
+        @elemAbout.classList.remove('invisible')
+        @elemAbout.scrollIntoView()
       )
     )
-
-  ###
-  @private
-  @method updateFullscreenClass
-  ###
-  updateFullscreenClass: ->
-    if screenfull.isFullscreen
-      document.body.classList.add('fullscreen')
-    else
-      document.body.classList.remove('fullscreen')
 
   ###
   @private
@@ -259,6 +290,8 @@ class Pomodoro
   startTimer: (delay) ->
     return if @running()
 
+    @updateFullscreenClass(enable: true)
+
     # NOTE(maros): We have to pad this with 1000ms because of the artificial
     # `timeDelay` we sometimes introduce below.
     return @resetTimer() if (@pastElapsedTime + 1000) > @timeSetting
@@ -268,6 +301,7 @@ class Pomodoro
     @showTime()
 
     @currentEntry = @addEntry(@timeSetting) if @pastElapsedTime is 0
+
     timeDelay = if delay then 1000 else 0
 
     clearInterval(@delayIntervalID)
@@ -303,6 +337,7 @@ class Pomodoro
   ###
   stopTimer: ->
     return unless @running()
+    @updateFullscreenClass(enable: false)
     clearInterval(@delayIntervalID)
     clearInterval(@updateIntervalID)
     @delayIntervalID  = null

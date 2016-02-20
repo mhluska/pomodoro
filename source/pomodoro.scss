@@ -12,11 +12,6 @@ $fast-transition: 0.15s ease-out;
   height: 100%;
 }
 
-@mixin invisible {
-  opacity: 0;
-  visibility: hidden;
-}
-
 html {
   height: 100%;
 }
@@ -25,11 +20,13 @@ body {
   font-size: 16px;
   font-family: sans-serif;
   color: $font-color;
+  height: 100%;
 }
 
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -62,7 +59,8 @@ p:first-of-type {
 }
 
 .invisible {
-  @include invisible;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .github-ribbon {
@@ -80,12 +78,18 @@ p:first-of-type {
 }
 
 .pomodoro {
-  transition: $fast-transition;
-  transition-property: opacity, transform;
+  @include align-vertical;
+
+  padding: 0;
   text-align: center;
   margin: 0 auto;
-  padding: 2em 0;
   width: 100%;
+
+  &,
+  header {
+    transition: $fast-transition;
+    transition-property: opacity, transform;
+  }
 
   header {
     margin-bottom: 3em;
@@ -93,11 +97,21 @@ p:first-of-type {
     overflow: auto;
   }
 
+  .before,
+  .after {
+    flex: 1;
+    min-height: 0;
+  }
+
   .entries {
     border: 1px solid transparent;
-    display: inline-block;
     box-sizing: border-box;
     font-size: 0.8em;
+    padding-top: 2em;
+
+    &:not(.hidden) {
+      display: inline-block;
+    }
 
     .entry {
       $height: 3.5em;
@@ -187,15 +201,10 @@ p:first-of-type {
   }
 
   .about-area {
-    display: none;
-    margin-top: 3em;
+    margin: 3em 0;
     padding: 0 1em;
     transition: 0.25s ease-out;
     transition-property: opacity, visibility;
-
-    body.about-invisible & {
-      @include invisible;
-    }
   }
 
   .description {
@@ -224,6 +233,7 @@ p:first-of-type {
 
   .share-links {
     font-size: 0.8em;
+    margin: 0.5em 0;
   }
 
   .share {
@@ -265,20 +275,14 @@ p:first-of-type {
 }
 
 body.fullscreen {
-  height: 100%;
+  .pomodoro > header,
+  .github-ribbon {
+    opacity: 0;
+    pointer-events: none;
+  }
 
-  .github-ribbon,
-  .pomodoro > * {
+  .about-area {
     display: none;
-  }
-
-  .timer-wrapper {
-    display: inline-block;
-  }
-
-  .pomodoro {
-    @include align-vertical;
-    padding: 0;
   }
 }
 
