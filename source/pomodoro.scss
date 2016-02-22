@@ -1,6 +1,7 @@
 $font-color: #222;
 $link-underline-color: #ccc;
 $link-hover-color: #b54646;
+$unsupported-color: #fafafa;
 $thin-border: 1px solid #ddd;
 $fast-transition: 0.15s ease-out;
 
@@ -9,7 +10,6 @@ $fast-transition: 0.15s ease-out;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
 }
 
 html {
@@ -84,6 +84,7 @@ p:first-of-type {
   text-align: center;
   margin: 0 auto;
   width: 100%;
+  height: 100%;
 
   &,
   header {
@@ -249,6 +250,10 @@ p:first-of-type {
     line-height: normal;
   }
 
+  .message-wrapper {
+    display: none;
+  }
+
   .timer-wrapper {
     width: 100%;
     padding: 1em 0;
@@ -256,6 +261,51 @@ p:first-of-type {
     border-top: $thin-border;
     border-bottom: $thin-border;
     line-height: 0;
+
+    &.disabled {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: $unsupported-color;
+        opacity: 0.925;
+      }
+
+      .message-wrapper {
+        // Vertical align hack.
+        &::before {
+          content: '';
+          height: 100%;
+        }
+
+        &::before,
+        .message {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 2em;
+        text-align: center;
+        line-height: 1.3;
+      }
+    }
+  }
+
+  .use-anyway {
+    margin-top: 2em;
   }
 
   .sponsors {

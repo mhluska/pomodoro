@@ -1,5 +1,63 @@
 # global screenfull
 
+###
+@method formatTime
+@param [number] time The time in milliseconds to format
+@todo Move to a utils class
+###
+formatTime = (time) ->
+  totalSeconds = time / 1000
+  minutes = Math.floor(totalSeconds / 60).toString()
+  seconds = Math.floor(totalSeconds % 60).toString()
+  seconds = '0' + seconds if seconds.length is 1
+  minutes + ':' + seconds
+
+class DependencyChecker
+  constructor: (@container) ->
+    @elemTimerWrapper = @container.querySelector('.timer-wrapper')
+    @elemMessage      = @container.querySelector('.message')
+
+    @container.addEventListener('click', (event) =>
+      return unless event.target.classList.contains('use-anyway')
+      @elemTimerWrapper.classList.remove('disabled')
+    )
+
+  check: ->
+    return @notify('fullscreen')   unless @hasFullscreen()
+    return @notify('localStorage') unless @hasLocalStorage()
+
+  ###
+  @private
+  @method hasLocalStorage
+  ###
+  hasLocalStorage: ->
+    test = 'test'
+    try
+      localStorage.setItem(test, test)
+      localStorage.removeItem(test)
+      return true
+    catch
+      return false
+
+  ###
+  @private
+  @method hasLocalStorage
+  ###
+  hasFullscreen: ->
+    screenfull.enabled?
+
+  ###
+  @private
+  @method notify
+  ###
+  notify: (item) ->
+    message  = "Looks like <em>#{item}</em> is not supported. Consider using a "
+    message += "<a href='https://www.google.com/chrome/browser/' target='_blank'>modern browser</a>."
+    message += "<button class='use-anyway big button'>Use anyway</button>"
+
+    @elemTimerWrapper.classList.add('disabled')
+    @elemMessage.innerHTML = message
+
 class Entry
   constructor: (data = {}) ->
     @time = data.time
@@ -13,7 +71,7 @@ class EntryView
   render: ->
     elem = @createElement()
     elem.querySelector('.note').innerHTML = @model.note
-    elem.querySelector('.time-remaining').innerHTML = @model.time
+    elem.querySelector('.time-remaining').innerHTML = formatTime(@model.time)
     elem
 
   bindActions: (elem) ->
@@ -24,9 +82,6 @@ class EntryView
 
       if event.target.classList.contains('note-editing')
         @elem.classList.remove('editing')
-
-      if event.target.classList.contains('close')
-        @removeElement()
     )
 
     elem.addEventListener('submit', (event) =>
@@ -83,13 +138,6 @@ class EntryView
 
     @elem
 
-  ###
-  @private
-  @method removeElement
-  ###
-  removeElement: ->
-    @elemEntries.removeChild(@elem)
-
 class Pomodoro
   setting:
     POMODORO: 25 * 60 * 1000
@@ -118,6 +166,7 @@ class Pomodoro
     @updateIntervalID = null
     @delayIntervalID  = null
     @currentEntry     = null
+    @entries          = []
     @pastElapsedTime  = 0
     @timeSetting      = @setting.POMODORO
 
@@ -127,8 +176,8 @@ class Pomodoro
     @bindActions()
     @updateVerticalAlignment()
 
-    window.addEventListener('resize', @adjustEntriesWidth.bind(this))
     @adjustEntriesWidth()
+    @loadEntries()
 
   ###
   @private
@@ -231,16 +280,20 @@ class Pomodoro
   @method bindActions
   ###
   bindActions: ->
-    @elemPomodoro.addEventListener('click',    => @resetTimer(@setting.POMODORO))
-    @elemShortBreak.addEventListener('click',  => @resetTimer(@setting.SHORT))
-    @elemLongBreak.addEventListener('click',   => @resetTimer(@setting.LONG))
-    @elemStartTimer.addEventListener('click',  => @startTimer())
-    @elemStopTimer.addEventListener('click',   => @stopTimer())
-    @elemResetTimer.addEventListener('click',  => @resetTimer(@timeSetting))
-    @elemFullscreen.addEventListener('click',  => @toggleFullscreen())
-    @elemAboutButton.addEventListener('click', => @showAbout())
+    @elemPomodoro.addEventListener('click',      => @resetTimer(@setting.POMODORO))
+    @elemShortBreak.addEventListener('click',    => @resetTimer(@setting.SHORT))
+    @elemLongBreak.addEventListener('click',     => @resetTimer(@setting.LONG))
+    @elemStartTimer.addEventListener('click',    => @startTimer())
+    @elemStopTimer.addEventListener('click',     => @stopTimer())
+    @elemResetTimer.addEventListener('click',    => @resetTimer(@timeSetting))
+    @elemFullscreen.addEventListener('click',    => @toggleFullscreen())
+    @elemAboutButton.addEventListener('click',   => @showAbout())
+    @container.addEventListener('click', (event) => @removeEntryByEvent(event))
 
     document.addEventListener(screenfull.raw.fullscreenchange, @updateFullscreenClass) if screenfull.enabled
+
+    window.addEventListener('resize', @adjustEntriesWidth.bind(this))
+    window.addEventListener('beforeunload', @saveEntries.bind(this))
 
   ###
   @private
@@ -263,16 +316,51 @@ class Pomodoro
   @private
   @method addEntry
   ###
-  addEntry: (time) ->
+  addEntry: (options = {}) ->
+    options.time ?= 0
+    options.note ?= ''
+
+    entry = new Entry(note: options.note, time: options.time)
+    view  = new EntryView(@container, entry)
+
+    @entries.push(view)
+    @currentEntry = view
+
+    view
+
+  ###
+  @private
+  @method addNamedEntry
+  ###
+  addNamedEntry: (timeSetting) ->
     note =
-      switch time
+      switch timeSetting
         when @setting.POMODORO then 'Pomodoro'
         when @setting.SHORT    then 'Short Break'
         when @setting.LONG     then 'Long Break'
 
-    entry = new Entry(note: note, time: @formatTime(0))
-    view  = new EntryView(@container, entry)
-    view
+    @addEntry(time: 0, note: note)
+
+  ###
+  @private
+  @method removeEntryByIndex
+  ###
+  removeEntryByIndex: (index) ->
+    view = @entries.splice(index, 1)[0]
+    view.elem.parentNode.removeChild(view.elem)
+
+  ###
+  @private
+  @method removeEntryByEvent
+  ###
+  removeEntryByEvent: (event) ->
+    return unless event.target.classList.contains('close')
+
+    item     = event.target.parentNode.parentNode
+    children = item.parentNode.children
+    index    = Array.prototype.indexOf.call(children, item)
+
+    @removeEntryByIndex(children.length - index - 1)
 
   ###
   @private
@@ -280,8 +368,23 @@ class Pomodoro
   ###
   updateCurrentEntry: (remaining) ->
     return unless @currentEntry?
-    @currentEntry.model.time = @formatTime(remaining)
+    @currentEntry.model.time = remaining
     @currentEntry.render()
+
+  ###
+  @private
+  @method saveEntries
+  ###
+  saveEntries: ->
+    localStorage.setItem('entries', JSON.stringify(e.model for e in @entries))
+
+  ###
+  @private
+  @method loadEntries
+  ###
+  loadEntries: ->
+    for entry in JSON.parse(localStorage.getItem('entries'))
+      @addEntry(time: entry.time, note: entry.note)
 
   ###
   @private
@@ -300,7 +403,7 @@ class Pomodoro
 
     @showTime()
 
-    @currentEntry = @addEntry(@timeSetting) if @pastElapsedTime is 0
+    @addNamedEntry(@timeSetting) if @pastElapsedTime is 0
 
     timeDelay = if delay then 1000 else 0
 
@@ -357,23 +460,11 @@ class Pomodoro
 
   ###
   @private
-  @method formatTime
-  @param [number] time The time in milliseconds to format
-  ###
-  formatTime: (time) ->
-    totalSeconds = time / 1000
-    minutes = Math.floor(totalSeconds / 60).toString()
-    seconds = Math.floor(totalSeconds % 60).toString()
-    seconds = '0' + seconds if seconds.length is 1
-    minutes + ':' + seconds
-
-  ###
-  @private
   @method subtractTime
   ###
   subtractTime: (timeElapsed) ->
     remaining = Math.max(0, @timeSetting - timeElapsed)
-    @elemTimer.innerHTML = @formatTime(remaining)
+    @elemTimer.innerHTML = formatTime(remaining)
     remaining
 
   ###
@@ -383,4 +474,7 @@ class Pomodoro
   showTime: ->
     @subtractTime(@pastElapsedTime)
 
-new Pomodoro(document.querySelector('.pomodoro'))
+container = document.querySelector('.pomodoro')
+
+(new DependencyChecker(container)).check()
+(new Pomodoro(container))
