@@ -125,8 +125,7 @@ class EntryView
     @elem.innerHTML = @strip("""
       <span class="note">#{@model.note}</span>
       <form class="note-entry">
-        <input type="text" value="#{@model.note}" name="editing-entry" />
-        <input type="submit" class="small button" value="Save" />
+        <input type="text" value="#{@model.note}" name="editing-entry" /><input type="submit" class="small button" value="Save" />
       </form>
       <div class="info-area">
         <span class="time-remaining">#{@model.time}</span>

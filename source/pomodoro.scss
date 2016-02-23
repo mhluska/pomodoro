@@ -80,6 +80,11 @@ p:first-of-type {
 .pomodoro {
   @include align-vertical;
 
+  $note-width: 70%;
+  $note-height: 3.5em;
+  $note-editing-width: 77.5%;
+  $note-padding: 1.95em;
+
   padding: 0;
   text-align: center;
   margin: 0 auto;
@@ -115,29 +120,16 @@ p:first-of-type {
     }
 
     .entry {
-      $height: 3.5em;
-
       box-sizing: border-box;
       display: block;
       overflow: visible;
-      height: $height;
-      line-height: $height;
-
-      > * {
-        display: inline-block;
-        vertical-align: middle;
-      }
+      height: $note-height;
 
       &:not(:first-child) {
         border-top: $thin-border;
       }
 
       &.editing {
-        $spacing: 0.75em;
-
-        padding-top: $spacing;
-        padding-bottom: $spacing;
-
         > * {
           display: none;
         }
@@ -146,6 +138,12 @@ p:first-of-type {
           display: block;
         }
       }
+    }
+
+    .entry > *,
+    .note-entry > * {
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .close {
@@ -164,6 +162,16 @@ p:first-of-type {
     .note {
       cursor: pointer;
       text-align: left;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .note,
+    .info-area,
+    .note-entry {
+      height: 100%;
+      line-height: $note-height;
     }
 
     .info-area {
@@ -171,33 +179,37 @@ p:first-of-type {
       float: right;
     }
 
-    .note,
+    .note {
+      width: $note-width;
+    }
+
+    [type=text] {
+      height: 26px;
+      border: $thin-border;
+      box-sizing: border-box;
+      width: $note-editing-width;
+      font-size: inherit;
+    }
+
+    [type=submit] {
+      $padding: 5%;
+      width: 100% - $note-editing-width - $padding;
+      margin-left: $padding;
+    }
+
+    [type=text],
+    [type=submit] {
+      font-family: inherit;
+    }
+
     .info-area {
-      width: 50%;
+      width: 100% - $note-width;
     }
 
     .note-entry {
       display: none;
       position: relative;
       width: 100%;
-      height: 100%;
-    }
-
-    [type=text] {
-      width: 50%;
-      position: absolute;
-      left: 0;
-    }
-
-    [type=submit] {
-      position: absolute;
-      right: 0;
-    }
-
-    [type=text],
-    [type=submit] {
-      top: 0;
-      bottom: 0;
     }
   }
 
