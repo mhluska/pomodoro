@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/mhluska
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://timer.red
+  * I am mhluska (https://keybase.io/mhluska) on keybase.
+  * I have a public key with fingerprint 403B 415D BC91 5B2A EE0F  6400 7F0F 9605 C7F9 D7F8
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01014fe73e3f30d15fd887ab7b7e41483a30c9c5f71457e55ecb74063d55dbe2f6860a",
+            "fingerprint": "403b415dbc915b2aee0f64007f0f9605c7f9d7f8",
+            "host": "keybase.io",
+            "key_id": "7f0f9605c7f9d7f8",
+            "kid": "01014fe73e3f30d15fd887ab7b7e41483a30c9c5f71457e55ecb74063d55dbe2f6860a",
+            "uid": "f8347529e478efbdec6efd704db03800",
+            "username": "mhluska"
+        },
+        "service": {
+            "hostname": "timer.red",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1466290589,
+    "expire_in": 157680000,
+    "prev": "bbc9430a409acf98c2e56cc8310094cbb9feca9419ba1b8487d8f69bde237078",
+    "seqno": 28,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owGtkm1MFFcUhllQKOhCoViF0rSMFm2LcGfnztfWoigqpklBCpVgcZ2PO+zA7s50
+doEFQhahTTAtpsqKWNs0DUSWEkOFaJuIwdSiqKAojfRjMbQNBBGqNqRgIaSzxP7r
+z/66954873vfc3I+MYYEBRs8UU0rrz4ZmTfcuM8H7UO3W6swXhErMHMVVoKWD2QT
+kdNlKZFFzIwBHOBQQjSBCIkAIk5KIsPQHE/zNII4ZAiOAAIrkBKNQ5JGJIkEnoaA
+IkSSFHlkkiiGAhyWjEmyowhpqiY7XLotBAQPcZ0QWJzkTRxCQKIgALQEJJYCpEBL
+rEhLjC60Ks6AQg/Hc06UIit6TX9YluP9B/8/5y5dtpMYAtKkiUWQZpDEi0igkCTS
+AIo8IBgAAqATaQ7OjnTabrWVOks4rDoZ04tlsoACcw008hRwyXakpWhI1HWqprgU
+QbHpZavLpZoDKleFGsDKEW95amDhZYeoj1AXlCHNKSsOzIzrpBCw0q+QokwsIBk2
+GUNuVdaQRQ4QJE3p6QAIfIPKdEtenzgkAAcBy+UKEssIJkRSgsAQOAAsFHielZDA
+sRBneQ7nGcjQIiNRrN6yiaABHZiwE73vUDCzidGDckW6qVMucnCuUg1h1RGHgxNW
+BBmCg0JXBge2Kygi/Nl/V84XFbUEmwv33Ro9tugPMxZWSokp8XxysPeF4s7YifYX
+OxKVucdTE9ahykPSzc6lti2F3h+Ge+1HQuSlt7arX2SduGL7sLHN3z/mm48j7Fq0
+6K8bSmrIXfDu9PX1eTa2XV+94/RCF7x17eovb06/O7ibP9b4l7/yux0n91RRr3c1
+PwnNSNFuOy6sG1GfiW4nNnXPw/yYB4WPvj+4tWaDcMa4LnOhvHBXz7lr/j9z2cW0
+upiepIRfOeeAt6Zo02mnuCqS6FoPwu7XHjduw0ixY/7vxjnXmdap5nkp62zG5KKh
+ZUQ+H5s+Hvu1e2v5a8a4O+7IO3OP6semujMH0y7nP7x+JG0u+/KCb/OprPCL6qVF
+T0PBiuo4OFOxxQDHjVfWH80zH6g6vEZZTPBvL141vHfve/UV5hzvhezpjlefr5+J
+/Dbs9/jwlqw3YLc947Eyc5Z5bk01meflHrTPOobviXVvX2qS9sx+dPFLP4OVMfHF
+u37r7p62fFP7ge2rTxtSJ+76Dnjc+8fjXp6M7sxJPU/8/FIm+NzZWXqzP2f1w7v3
+0o2lG2a5Qx+HDt8wNIW5fzLWTq3l3kFVVEhfr6HGNtDikX70DeRHx8e7k6xW4CpX
+Owd7ei2j438IwwXn1FNE6/HsV4bSQhV3QVHeyYiGg4lrJ1s8+9V0befoxpTaz8Y2
+t57oj4lN/Qc=
+=bPq3
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mhluska
+
+==================================================================
+
