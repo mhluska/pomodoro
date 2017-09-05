@@ -6,64 +6,46 @@ I hereby claim:
 
   * I am an admin of http://timer.red
   * I am mhluska (https://keybase.io/mhluska) on keybase.
-  * I have a public key with fingerprint 403B 415D BC91 5B2A EE0F  6400 7F0F 9605 C7F9 D7F8
+  * I have a public key ASCz8Sc5esqPXfNmSAWxron7Kzm6oI6hliqA2Bsf3PvdLQo
 
 To do so, I am signing this object:
 
 {
-    "body": {
-        "key": {
-            "eldest_kid": "01014fe73e3f30d15fd887ab7b7e41483a30c9c5f71457e55ecb74063d55dbe2f6860a",
-            "fingerprint": "403b415dbc915b2aee0f64007f0f9605c7f9d7f8",
-            "host": "keybase.io",
-            "key_id": "7f0f9605c7f9d7f8",
-            "kid": "01014fe73e3f30d15fd887ab7b7e41483a30c9c5f71457e55ecb74063d55dbe2f6860a",
-            "uid": "f8347529e478efbdec6efd704db03800",
-            "username": "mhluska"
-        },
-        "service": {
-            "hostname": "timer.red",
-            "protocol": "http:"
-        },
-        "type": "web_service_binding",
-        "version": 1
+  "body": {
+    "key": {
+      "eldest_kid": "01014fe73e3f30d15fd887ab7b7e41483a30c9c5f71457e55ecb74063d55dbe2f6860a",
+      "host": "keybase.io",
+      "kid": "0120b3f127397aca8f5df3664805b1ae89fb2b39baa08ea1962a80d81b1fdcfbdd2d0a",
+      "uid": "f8347529e478efbdec6efd704db03800",
+      "username": "mhluska"
     },
-    "ctime": 1466290589,
-    "expire_in": 157680000,
-    "prev": "bbc9430a409acf98c2e56cc8310094cbb9feca9419ba1b8487d8f69bde237078",
-    "seqno": 28,
-    "tag": "signature"
+    "merkle_root": {
+      "ctime": 1504636080,
+      "hash": "b27a68f145689ebff1450120fe8f17621892e7863683b75954871509300f2d44930485069fa00ce8682387c07e0ba3e397d4683d9e9982ea4f0e1b8fd19c1fb0",
+      "hash_meta": "b2b20f5954074f5c08aed40d105d8486cbda719bb5b5ee888e60f4faad99d79e",
+      "seqno": 1368473
+    },
+    "service": {
+      "hostname": "timer.red",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.28"
+  },
+  "ctime": 1504636192,
+  "expire_in": 504576000,
+  "prev": "794593c3a611957e623fbd6e1bdb3c0a0b761387900aa2b4faac10d3ee21020e",
+  "seqno": 49,
+  "tag": "signature"
 }
 
 which yields the signature:
 
------BEGIN PGP MESSAGE-----
-Version: GnuPG v1
-
-owGtkm1MFFcUhllQKOhCoViF0rSMFm2LcGfnztfWoigqpklBCpVgcZ2PO+zA7s50
-doEFQhahTTAtpsqKWNs0DUSWEkOFaJuIwdSiqKAojfRjMbQNBBGqNqRgIaSzxP7r
-z/66954873vfc3I+MYYEBRs8UU0rrz4ZmTfcuM8H7UO3W6swXhErMHMVVoKWD2QT
-kdNlKZFFzIwBHOBQQjSBCIkAIk5KIsPQHE/zNII4ZAiOAAIrkBKNQ5JGJIkEnoaA
-IkSSFHlkkiiGAhyWjEmyowhpqiY7XLotBAQPcZ0QWJzkTRxCQKIgALQEJJYCpEBL
-rEhLjC60Ks6AQg/Hc06UIit6TX9YluP9B/8/5y5dtpMYAtKkiUWQZpDEi0igkCTS
-AIo8IBgAAqATaQ7OjnTabrWVOks4rDoZ04tlsoACcw008hRwyXakpWhI1HWqprgU
-QbHpZavLpZoDKleFGsDKEW95amDhZYeoj1AXlCHNKSsOzIzrpBCw0q+QokwsIBk2
-GUNuVdaQRQ4QJE3p6QAIfIPKdEtenzgkAAcBy+UKEssIJkRSgsAQOAAsFHielZDA
-sRBneQ7nGcjQIiNRrN6yiaABHZiwE73vUDCzidGDckW6qVMucnCuUg1h1RGHgxNW
-BBmCg0JXBge2Kygi/Nl/V84XFbUEmwv33Ro9tugPMxZWSokp8XxysPeF4s7YifYX
-OxKVucdTE9ahykPSzc6lti2F3h+Ge+1HQuSlt7arX2SduGL7sLHN3z/mm48j7Fq0
-6K8bSmrIXfDu9PX1eTa2XV+94/RCF7x17eovb06/O7ibP9b4l7/yux0n91RRr3c1
-PwnNSNFuOy6sG1GfiW4nNnXPw/yYB4WPvj+4tWaDcMa4LnOhvHBXz7lr/j9z2cW0
-upiepIRfOeeAt6Zo02mnuCqS6FoPwu7XHjduw0ixY/7vxjnXmdap5nkp62zG5KKh
-ZUQ+H5s+Hvu1e2v5a8a4O+7IO3OP6semujMH0y7nP7x+JG0u+/KCb/OprPCL6qVF
-T0PBiuo4OFOxxQDHjVfWH80zH6g6vEZZTPBvL141vHfve/UV5hzvhezpjlefr5+J
-/Dbs9/jwlqw3YLc947Eyc5Z5bk01meflHrTPOobviXVvX2qS9sx+dPFLP4OVMfHF
-u37r7p62fFP7ge2rTxtSJ+76Dnjc+8fjXp6M7sxJPU/8/FIm+NzZWXqzP2f1w7v3
-0o2lG2a5Qx+HDt8wNIW5fzLWTq3l3kFVVEhfr6HGNtDikX70DeRHx8e7k6xW4CpX
-Owd7ei2j438IwwXn1FNE6/HsV4bSQhV3QVHeyYiGg4lrJ1s8+9V0befoxpTaz8Y2
-t57oj4lN/Qc=
-=bPq3
------END PGP MESSAGE-----
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgs/EnOXrKj13zZkgFsa6J+ys5uqCOoZYqgNgbH9z73S0Kp3BheWxvYWTFA0B7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxNGZlNzNlM2YzMGQxNWZkODg3YWI3YjdlNDE0ODNhMzBjOWM1ZjcxNDU3ZTU1ZWNiNzQwNjNkNTVkYmUyZjY4NjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwYjNmMTI3Mzk3YWNhOGY1ZGYzNjY0ODA1YjFhZTg5ZmIyYjM5YmFhMDhlYTE5NjJhODBkODFiMWZkY2ZiZGQyZDBhIiwidWlkIjoiZjgzNDc1MjllNDc4ZWZiZGVjNmVmZDcwNGRiMDM4MDAiLCJ1c2VybmFtZSI6Im1obHVza2EifSwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE1MDQ2MzYwODAsImhhc2giOiJiMjdhNjhmMTQ1Njg5ZWJmZjE0NTAxMjBmZThmMTc2MjE4OTJlNzg2MzY4M2I3NTk1NDg3MTUwOTMwMGYyZDQ0OTMwNDg1MDY5ZmEwMGNlODY4MjM4N2MwN2UwYmEzZTM5N2Q0NjgzZDllOTk4MmVhNGYwZTFiOGZkMTljMWZiMCIsImhhc2hfbWV0YSI6ImIyYjIwZjU5NTQwNzRmNWMwOGFlZDQwZDEwNWQ4NDg2Y2JkYTcxOWJiNWI1ZWU4ODhlNjBmNGZhYWQ5OWQ3OWUiLCJzZXFubyI6MTM2ODQ3M30sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJ0aW1lci5yZWQiLCJwcm90b2NvbCI6Imh0dHA6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjI4In0sImN0aW1lIjoxNTA0NjM2MTkyLCJleHBpcmVfaW4iOjUwNDU3NjAwMCwicHJldiI6Ijc5NDU5M2MzYTYxMTk1N2U2MjNmYmQ2ZTFiZGIzYzBhMGI3NjEzODc5MDBhYTJiNGZhYWMxMGQzZWUyMTAyMGUiLCJzZXFubyI6NDksInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RAgQVBnZ9BrhJQ/jOzUIUo5ZAHSTNX8OA0c6qwgTFDgyTq/b1O1qNCTbmncWguyQ4ciYM7VcP/wSqH+CH1anTYDKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIApF1yP23xwUQRRROWtH8xmEGMFnmk1qVdyT0bGyECF1o3RhZ80CAqd2ZXJzaW9uAQ==
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
@@ -71,4 +53,3 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/mhluska
 
 ==================================================================
-
