@@ -16,13 +16,12 @@
     "url": "https://github.com/mhluska/pomodoro/issues"
   },
   "homepage": "https://github.com/mhluska/pomodoro#readme",
-  "dependencies": {
-    "coffeescript": "^2.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^9.7.1",
+    "coffeescript": "^2.4.1",
     "html-inline": "github:mhluska/html-inline#maros/fix-svg",
-    "html-minifier": "^0.8.0",
+    "html-minifier": "^4.0.0",
     "postcss-cli": "^6.1.3"
   }
 }
