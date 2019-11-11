@@ -1,25 +1,35 @@
 #!/bin/bash
 
-source .env
+set -e # If anything fails, stop the script.
+set -u # If an undefined variable is expanded, stop the script.
+
+function sync_s3() {
+  local src="${1}"
+  local dest="${2}"
+
+  aws s3 sync --content-encoding 'gzip' \
+              --cache-control max-age=604800 \
+              --acl public-read \
+              --delete \
+              "${src}" \
+              "${dest}"
+}
 
 root="$(git rev-parse --show-toplevel)"
 
 cd "${root}"
 
-mkdir -p dist
-coffee -cp source/pomodoro.coffee > dist/pomodoro.js
+source .env
 
-cp -LR source/* dist
+export AWS_DEFAULT_PROFILE="${AWS_DEFAULT_PROFILE}"
 
-postcss --use autoprefixer source/*.css -d dist/
+./script/build
 
-rm dist/*.{coffee,scss}
+find dist -name .DS_Store -delete
+find dist -type f -exec gzip -9 '{}' \; -exec mv '{}.gz' '{}' \;
 
-sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" dist/sitemap.xml > dist/sitemap.xml.tmp
-mv dist/sitemap.xml.tmp dist/sitemap.xml
+sync_s3 dist s3://pomodoro-timer
 
-html-inline dist/index.html | html-minifier -c config/html-minifier.json > dist/index.html.min
-mv dist/index.html.min dist/index.html
-
-ssh -p ${DEPLOY_PORT} ${DEPLOY_USERNAME}@${DEPLOY_HOST} mkdir -p ${DEPLOY_PATH}
-scp -P ${DEPLOY_PORT} dist/* ${DEPLOY_USERNAME}@${DEPLOY_HOST}:${DEPLOY_PATH}
+aws cloudfront create-invalidation \
+  --distribution-id "${AWS_CLOUDFRONT_DISTRIBUTION_ID}" \
+  --paths '/*'

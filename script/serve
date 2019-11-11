@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e # If anything fails, stop the script.
+set -u # If an undefined variable is expanded, stop the script.
+
 function run_server() {
     if [[ "$(python --version)" =~ 'Python 3' ]]; then
         python -m http.server ${PORT}
@@ -12,10 +15,5 @@ PORT="${1:-8000}"
 root="$(git rev-parse --show-toplevel)"
 
 cd "${root}/source"
-
-ln -fs ../bower_components/normalize.css/normalize.css
-ln -fs ../bower_components/css3-github-buttons/gh-buttons.css
-ln -fs ../bower_components/css3-github-buttons/gh-icons.png
-ln -fs ../bower_components/screenfull/dist/screenfull.js
 
 run_server

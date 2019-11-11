@@ -1,0 +1,28 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "Pomodoro timer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhluska/pomodoro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhluska/pomodoro/issues"
+  },
+  "homepage": "https://github.com/mhluska/pomodoro#readme",
+  "dependencies": {
+    "coffeescript": "^2.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.1",
+    "html-inline": "github:mhluska/html-inline#maros/fix-svg",
+    "html-minifier": "^0.8.0",
+    "postcss-cli": "^6.1.3"
+  }
+}
