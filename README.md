@@ -2,7 +2,7 @@
 
 ### Pomodoro Timer
 
-**Pomodoro Timer** is an easy to use, web-based Pomodoro Technique timer: http://timer.red/
+**Pomodoro Timer** is an easy to use, web-based Pomodoro Technique timer: https://timer.mhluska.com
 
 Cross-browser testing is sponsored by [BrowserStack](https://www.browserstack.com).
 
