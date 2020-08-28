@@ -1,17 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   entry: './src/js/index.js',
   plugins: [
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['!CNAME'],
-    }),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       favicon: 'src/favicon.ico'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/robots.txt', to: 'robots.txt' },
+        { from: 'src/sitemap.xml', to: 'sitemap.xml' },
+        { from: 'src/CNAME', to: 'CNAME', toType: 'file' }
+      ],
     }),
   ],
   output: {
