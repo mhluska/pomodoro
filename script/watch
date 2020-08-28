@@ -7,7 +7,6 @@ root="$(git rev-parse --show-toplevel)"
 
 cd "${root}/source"
 
-$(npm bin)/coffee -cw . &
 $(npm bin)/sass --watch . &
 
 wait

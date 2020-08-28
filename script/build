@@ -23,15 +23,13 @@ setup_symlinks
 rm -rf dist
 mkdir dist
 
-$(npm bin)/coffee -cp source/pomodoro.coffee > dist/pomodoro.js
-
 sass source/pomodoro.scss dist/pomodoro.css
 
 cp -LR source/* dist
 
 $(npm bin)/postcss source/*.css -d dist/ --use autoprefixer
 
-rm dist/*.{coffee,scss}
+rm -f dist/*.{scss}
 
 sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" dist/sitemap.xml > dist/sitemap.xml.tmp
 mv dist/sitemap.xml.tmp dist/sitemap.xml

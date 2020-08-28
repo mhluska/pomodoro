@@ -19,7 +19,6 @@
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^9.7.1",
-    "coffeescript": "^2.4.1",
     "html-inline": "github:mhluska/html-inline#maros/fix-svg",
     "html-minifier": "^4.0.0",
     "postcss-cli": "^6.1.3"

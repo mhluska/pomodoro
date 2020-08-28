@@ -1,7 +1,6 @@
 source/*.css
 source/*.css.map
-source/*.js
-source/*.js.min
+source/screenfull.js
 
 !source/web-fonts.js
 
