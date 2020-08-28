@@ -21,6 +21,6 @@
     "autoprefixer": "^9.7.1",
     "html-inline": "github:mhluska/html-inline#maros/fix-svg",
     "html-minifier": "^4.0.0",
-    "postcss-cli": "^6.1.3"
+    "postcss-cli": "^7.1.1"
   }
 }
