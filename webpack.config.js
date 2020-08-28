@@ -6,7 +6,9 @@ module.exports = {
   mode: 'production',
   entry: './src/js/index.js',
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['!CNAME'],
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       favicon: 'src/favicon.ico'
