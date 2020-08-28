@@ -320,16 +320,6 @@ p:first-of-type {
     margin-top: 2em;
   }
 
-  .sponsors {
-    margin-top: 3em;
-    font-size: 0.8em;
-  }
-
-  .browserstack-logo {
-    width: 10em;
-    margin: 1em 0;
-  }
-
   body.invisible & {
     opacity: 0;
     transform: translateY(5%);
