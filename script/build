@@ -33,6 +33,3 @@ rm -f dist/*.{scss}
 
 sed "s/{{timestamp}}/$(date +%Y-%m-%d)/g" dist/sitemap.xml > dist/sitemap.xml.tmp
 mv dist/sitemap.xml.tmp dist/sitemap.xml
-
-$(npm bin)/html-inline dist/index.html | html-minifier -c config/html-minifier.json > dist/index.html.min
-mv dist/index.html.min dist/index.html
