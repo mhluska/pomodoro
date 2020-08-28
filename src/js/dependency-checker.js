@@ -1,12 +1,8 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-window.DependencyChecker = class DependencyChecker {
-  constructor(container) {
-    this.container = container;
+import screenfull from 'screenfull';
+
+export default class DependencyChecker {
+  constructor(container1) {
+    this.container = container1;
     this.elemTimerWrapper = this.container.querySelector('.timer-wrapper');
     this.elemMessage      = this.container.querySelector('.message');
 
@@ -41,7 +37,7 @@ window.DependencyChecker = class DependencyChecker {
   @method hasLocalStorage
   */
   hasFullscreen() {
-    return (screenfull.enabled != null);
+    return (screenfull.isEnabled != null);
   }
 
   /*
@@ -56,4 +52,4 @@ window.DependencyChecker = class DependencyChecker {
     this.elemTimerWrapper.classList.add('disabled');
     return this.elemMessage.innerHTML = message;
   }
-};
+}

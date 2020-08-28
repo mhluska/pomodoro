@@ -4,22 +4,35 @@
   "description": "Pomodoro timer",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mhluska/pomodoro.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Maros Hluska <mhluska@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mhluska/pomodoro/issues"
   },
   "homepage": "https://github.com/mhluska/pomodoro#readme",
-  "dependencies": {},
+  "dependencies": {
+    "screenfull": "^5.0.2"
+  },
   "devDependencies": {
-    "autoprefixer": "^9.7.1",
-    "html-minifier": "^4.0.0",
-    "postcss-cli": "^7.1.1"
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.2",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.3.0",
+    "html-webpack-plugin": "^4.3.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^1.2.1",
+    "svg-inline-loader": "^0.8.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

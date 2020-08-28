@@ -1,4 +1,4 @@
-![tomato](source/tomato.png)
+![tomato](src/images/tomato.png)
 
 ### Pomodoro Timer
 
@@ -9,11 +9,8 @@ Cross-browser testing is sponsored by [BrowserStack](https://www.browserstack.co
 #### Develop
 
 ```
-bower install
-gem install sass
 npm install
-script/build
-script/serve # or `script/watch`
+npm start
 ```
 
 #### Deploy

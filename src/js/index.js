@@ -1,3 +1,14 @@
+import screenfull from 'screenfull';
+
+import './web-fonts.js';
+import DependencyChecker from './dependency-checker.js';
+import Entry from './entry.js';
+import EntryView from './entry-view.js';
+import formatTime from './utils/format-time';
+
+import '../css/gh-buttons.css';
+import '../css/pomodoro.scss';
+
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -7,167 +18,6 @@
  * DS207: Consider shorter variations of null checks
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-// global screenfull
-
-/*
-@method formatTime
-@param [number] time The time in milliseconds to format
-@todo Move to a utils class
-*/
-const formatTime = function(time) {
-  const totalSeconds = time / 1000;
-  const minutes = Math.floor(totalSeconds / 60).toString();
-  let seconds = Math.floor(totalSeconds % 60).toString();
-  if (seconds.length === 1) { seconds = '0' + seconds; }
-  return minutes + ':' + seconds;
-};
-
-class DependencyChecker {
-  constructor(container1) {
-    this.container = container1;
-    this.elemTimerWrapper = this.container.querySelector('.timer-wrapper');
-    this.elemMessage      = this.container.querySelector('.message');
-
-    this.container.addEventListener('click', event => {
-      if (!event.target.classList.contains('use-anyway')) { return; }
-      return this.elemTimerWrapper.classList.remove('disabled');
-    });
-  }
-
-  check() {
-    if (!this.hasFullscreen()) { return this.notify('fullscreen'); }
-    if (!this.hasLocalStorage()) { return this.notify('localStorage'); }
-  }
-
-  /*
-  @private
-  @method hasLocalStorage
-  */
-  hasLocalStorage() {
-    const test = 'test';
-    try {
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  /*
-  @private
-  @method hasLocalStorage
-  */
-  hasFullscreen() {
-    return (screenfull.enabled != null);
-  }
-
-  /*
-  @private
-  @method notify
-  */
-  notify(item) {
-    let message  = `Looks like <em>${item}</em> is not supported. Consider using a `;
-    message += "<a href='https://www.google.com/chrome/browser/' target='_blank'>modern browser</a>.";
-    message += "<button class='use-anyway big button'>Use anyway</button>";
-
-    this.elemTimerWrapper.classList.add('disabled');
-    return this.elemMessage.innerHTML = message;
-  }
-}
-
-class Entry {
-  constructor(data) {
-    if (data == null) { data = {}; }
-    this.time = data.time;
-    this.note = data.note;
-  }
-}
-
-class EntryView {
-  constructor(container1, model) {
-    this.container = container1;
-    this.model = model;
-    this.elemEntries = this.find('.entries');
-    this.elem = this.bindActions(this.render());
-  }
-
-  render() {
-    const elem = this.createElement();
-    elem.querySelector('.note').innerHTML = this.model.note;
-    elem.querySelector('.time-remaining').innerHTML = formatTime(this.model.time);
-    return elem;
-  }
-
-  bindActions(elem) {
-    elem.addEventListener('click', event => {
-      if (event.target.classList.contains('note')) {
-        this.elem.classList.add('editing');
-        this.elem.querySelector('[type=text]').select();
-      }
-
-      if (event.target.classList.contains('note-editing')) {
-        return this.elem.classList.remove('editing');
-      }
-    });
-
-    elem.addEventListener('submit', event => {
-      event.preventDefault();
-
-      this.model.note = event.target['editing-entry'].value;
-      this.elem.classList.remove('editing');
-      return this.render();
-    });
-
-    return elem;
-  }
-
-  /*
-  @private
-  @method strip
-  @todo Reuse in `View` or `Utils` class.
-  */
-  strip(text) {
-    return text.replace('\s\s+', ' ');
-  }
-
-  /*
-  @private
-  @method find
-  @todo This is duplicated in `Pomodoro`. Reuse it in a `View` class.
-  */
-  find(selector) {
-    const elem = this.container.querySelector(selector);
-    if (!elem) { throw new Error(`Element not found ${selector}`); }
-    return elem;
-  }
-
-  /*
-  @private
-  @method createElement
-  */
-  createElement() {
-    if (this.elem != null) { return this.elem; }
-
-    this.elem = document.createElement('li');
-    this.elem.classList.add('entry');
-
-    this.elem.innerHTML = this.strip(`\
-<span class="note">${this.model.note}</span>
-<form class="note-entry">
-  <input type="text" value="${this.model.note}" name="editing-entry" /><input type="submit" class="small button" value="Save" />
-</form>
-<div class="info-area">
-  <span class="time-remaining">${this.model.time}</span>
-  <button class="close small button">✕</button>
-</div>\
-`);
-
-    this.elemEntries.insertBefore(this.elem, this.elemEntries.childNodes[0]);
-
-    return this.elem;
-  }
-}
 
 class Pomodoro {
   static initClass() {
@@ -195,7 +45,7 @@ class Pomodoro {
     this.elemHeader       = this.find('.pomodoro header');
 
     this.defaultTitle     = document.title;
-    this.notifySound      = this.loadSound('notify.mp3');
+    this.notifySound      = this.loadSound(require('../audio/notify.mp3').default);
     this.cachedHeight     = {};
     this.startTime        = null;
     this.updateIntervalID = null;
@@ -206,7 +56,7 @@ class Pomodoro {
     this.timeSetting      = this.setting.POMODORO;
 
     if (this.hasAboutAnchor()) { this.showAbout(); }
-    if (screenfull.enabled) { this.showFullscreenButton(); }
+    if (screenfull.isEnabled) { this.showFullscreenButton(); }
 
     this.showTime();
     this.bindActions();
@@ -339,7 +189,7 @@ class Pomodoro {
     this.elemAboutButton.addEventListener('click',   () => this.showAbout());
     this.container.addEventListener('click', event => this.removeEntryByEvent(event));
 
-    if (screenfull.enabled) { document.addEventListener(screenfull.raw.fullscreenchange, this.updateFullscreenClass); }
+    if (screenfull.isEnabled) { document.addEventListener(screenfull.raw.fullscreenchange, this.updateFullscreenClass); }
 
     window.addEventListener('resize', this.adjustEntriesWidth.bind(this));
     return window.addEventListener('beforeunload', this.saveEntries.bind(this));
@@ -549,5 +399,9 @@ Pomodoro.initClass();
 
 const container = document.querySelector('.pomodoro');
 
-(new DependencyChecker(container)).check();
-new Pomodoro(container);
+if (container) {
+  (new DependencyChecker(container)).check();
+  new Pomodoro(container);
+} else {
+  console.warn('No element with `pomodoro` class found');
+}

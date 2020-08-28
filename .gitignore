@@ -1,12 +1,1 @@
-source/*.css
-source/*.css.map
-source/screenfull.js
-
-!source/web-fonts.js
-
 /dist
-/bower_components
-
-.sass-cache
-.todo
-.env
