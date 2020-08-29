@@ -10,9 +10,3 @@
 npm install
 npm start
 ```
-
-#### Deploy
-
-```
-script/deploy
-```
