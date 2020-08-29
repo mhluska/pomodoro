@@ -6,7 +6,6 @@ import Entry from './entry.js';
 import EntryView from './entry-view.js';
 import formatTime from './utils/format-time';
 
-import '../css/gh-buttons.css';
 import '../css/pomodoro.scss';
 
 /*
